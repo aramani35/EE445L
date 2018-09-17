@@ -1611,6 +1611,13 @@ void Output_Color(uint32_t newColor){ // Set color of future output
   ST7735_SetTextColor(newColor);
 }
 
+
+int abs(int x){
+	if (x<0){
+		x*=1;
+	}
+	return x;
+}
 //************* ST7735_Line********************************************
 //  Draws one line on the ST7735 color LCD
 //  Inputs: (x1,y1) is the start point
@@ -1624,6 +1631,7 @@ void Output_Color(uint32_t newColor){ // Set color of future output
 //        color 16-bit color, which can be produced by ST7735_Color565() 
 // Output: none
 void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color){
+
 	if (y1 < 32) y1 = 32;		// set max and min y limits
 	if (y2 > 159) y2 = 159;
 	
@@ -1632,8 +1640,8 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 //  ST7735_SetCursor(0,0);
 //  ST7735_OutString("Lines");
 	
-	int rangeX = x2 - x1;		// calculate range x
-	int rangeY = y2 - y1; 	// calculate range y
+	int rangeX = abs(x2 - x1);		// calculate range x
+	int rangeY = abs(y2 - y1); 	// calculate range y
 
 	// vertical line
 	if(x1 == x2){
@@ -1649,20 +1657,33 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 	}
 	
 	// diagonal line
+	int slope = rangeY / rangeX;
+	int step = -1;
+	if (rangeY < 0){
+				step = 1;
+	}
 	if(x2 > x1){ // right plotting
 		int y;
-		
+
 		for(int i = x1; i < x2; i++){	
-			y = (rangeY * (i - x1) / rangeX) + y1; 
-			ST7735_DrawPixel(i, y, color); 
+			y = (rangeY * (i - x1) / rangeX) + y1;
+
+			for(int j = 0; j < slope; j++){
+				ST7735_DrawPixel(i, y+j*step, color); 
+			}
+			
 		}
 	}
 	else if(x1 > x2){ // left plotting
 		int y;
 		
 		for(int i = x2; i < x1; i++){
+			
 			y = (rangeY * (i - x1) / rangeX) + y1; 
-			ST7735_DrawPixel(i, y, color); 
+			
+			for(int j = 0; j < slope; j++){
+				ST7735_DrawPixel(i, y+j*step, color); 
+			}		
 		}
 	}
 }

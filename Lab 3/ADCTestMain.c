@@ -1105,11 +1105,15 @@ int main(void){
 	hourX = hourOrigX + 31*sin(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
 	hourY = hourOrigY - 31*cos(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
 	
+//	ST7735_Line(90,70,40,100,ST7735_BLUE);
+//	ST7735_Line(64,97,69,127,ST7735_BLUE);
+	
 	ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
-	ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_RED);
-	startHr = sin(30);
+	ST7735_Line(hourOrigX,hourOrigY,(int)hourX,(int)hourY,ST7735_RED);
 	while (1){
+
 		if(secFlag == 1){
+			PF1^=0x02;
 			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_WHITE);
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_WHITE);
 		
