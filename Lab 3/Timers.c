@@ -8,7 +8,7 @@
 #define PF2             (*((volatile uint32_t *)0x40025010))
 #define PF1             (*((volatile uint32_t *)0x40025008))
 	
-int secs, mins, hrs = 0;
+extern int secs, mins, hrs, secFlag;
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -83,6 +83,7 @@ void Timer1_Init(uint32_t period){
 void Timer1A_Handler(void){
   TIMER1_ICR_R = TIMER_ICR_TATOCINT;// acknowledge TIMER1A timeout
   secs+=1;
+	secFlag = 1;
 	
 	if(secs >= 60){
 		secs = 0;

@@ -1055,8 +1055,21 @@ const unsigned short Clock_1[] = {
 
 };
 
+#include <math.h>
 
-volatile int x;
+volatile int startSec;
+volatile int startMin;
+volatile double startHr;
+int secs;
+int mins;
+int hrs;
+int minOrigX, minOrigY, hourOrigX, hourOrigY;
+int minX, minY, hourX, hourY;
+int secFlag = 0;
+
+
+
+
 
 int main(void){
   PLL_Init(Bus80MHz);                   // 80 MHz
@@ -1072,18 +1085,43 @@ int main(void){
   GPIO_PORTF_PCTL_R = (GPIO_PORTF_PCTL_R&0xFFFFF00F)+0x00000000;
   GPIO_PORTF_AMSEL_R = 0;               // disable analog functionality on PF
   PF2 = 0;                      // turn off LED
-  EnableInterrupts();
 	ST7735_DrawBitmap(2,159,Clock_1,128,126);
 //	ST7735_OutString(__DATE__);
 	ST7735_OutString(__TIME__);
   char* time = __TIME__;
-	x = time[0];
-	
+	hrs = ((time[0]-0x30)*10)+(time[1]-0x30);
+	mins = ((time[3]-0x30)*10)+(time[4]-0x30);
+	secs = ((time[6]-0x30)*10)+(time[7]-0x30);
+	EnableInterrupts();
 //	char* hr = (time[0] + time[1]);
-	ST7735_OutChar(time[0] + time[1]);
-	ST7735_Line(64,97,100,97,ST7735_BLUE);
+	
+	minOrigX = 64;
+	minOrigY = 97;
+	hourOrigX = 64;
+	hourOrigY = 97;
+	
+	minX = minOrigX + 39*sin(((double)mins+(double)secs/60) * 2*(3.14159)/60);
+	minY = minOrigY - 39*cos(((double)mins+(double)secs/60) * 2*(3.14159)/60);
+	hourX = hourOrigX + 31*sin(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
+	hourY = hourOrigY - 31*cos(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
+	
+	ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
+	ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_RED);
+	startHr = sin(30);
 	while (1){
-		PF2^=2;
+		if(secFlag == 1){
+			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_WHITE);
+			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_WHITE);
+		
+			minX = minOrigX + 39*sin(((double)mins+(double)secs/60) * 2*(3.14159)/60);
+			minY = minOrigY - 39*cos(((double)mins+(double)secs/60) * 2*(3.14159)/60);
+			hourX = hourOrigX + 31*sin(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
+			hourY = hourOrigY - 31*cos(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
+	
+			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
+			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_RED);
+			secFlag = 0;
+		}
 	}
 	
 	
