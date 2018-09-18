@@ -41,7 +41,7 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-
+/*
 const unsigned short Clock_1[] = {
  0xEF9F, 0xEFBF, 0xEFBF, 0xEFBF, 0xF79F, 0xF7BF, 0xF7BF, 0xF7BF, 0xF7DF, 0xF7BF, 0xF7BF, 0xF7DF, 0xF7DF, 0xF7DF, 0xF7DF, 0xF7BF,
  0xF7DF, 0xF7DF, 0xF7DF, 0xF7FF, 0xFFFF, 0xF7FF, 0xFFDF, 0xF7DF, 0xFFFF, 0xF7DF, 0xFFFF, 0xFFFF, 0xFFFF, 0xF7DF, 0xF7DF, 0xFFFF,
@@ -1054,6 +1054,7 @@ const unsigned short Clock_1[] = {
 
 
 };
+*/
 
 #include <math.h>
 
@@ -1085,7 +1086,7 @@ int main(void){
   GPIO_PORTF_PCTL_R = (GPIO_PORTF_PCTL_R&0xFFFFF00F)+0x00000000;
   GPIO_PORTF_AMSEL_R = 0;               // disable analog functionality on PF
   PF2 = 0;                      // turn off LED
-	ST7735_DrawBitmap(2,159,Clock_1,128,126);
+//	ST7735_DrawBitmap(2,159,Clock_1,128,126);
 //	ST7735_OutString(__DATE__);
 	ST7735_OutString(__TIME__);
   char* time = __TIME__;

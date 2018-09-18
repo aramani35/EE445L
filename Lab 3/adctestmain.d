@@ -5,3 +5,4 @@
 .\adctestmain.o: PLL.h
 .\adctestmain.o: ST7735.h
 .\adctestmain.o: Timers.h
+.\adctestmain.o: C:\Keil\ARM\ARMCC\bin\..\include\math.h

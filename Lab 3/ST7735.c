@@ -1614,7 +1614,7 @@ void Output_Color(uint32_t newColor){ // Set color of future output
 
 int abs(int x){
 	if (x<0){
-		x*=1;
+		return x*-1;
 	}
 	return x;
 }
@@ -1640,8 +1640,8 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 //  ST7735_SetCursor(0,0);
 //  ST7735_OutString("Lines");
 	
-	int rangeX = abs(x2 - x1);		// calculate range x
-	int rangeY = abs(y2 - y1); 	// calculate range y
+	int rangeX = x2 - x1;		// calculate range x
+	int rangeY = y2 - y1; 	// calculate range y
 
 	// vertical line
 	if(x1 == x2){
@@ -1657,7 +1657,7 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 	}
 	
 	// diagonal line
-	int slope = rangeY / rangeX;
+	int slope = (int)abs(rangeY/rangeX) + 1;
 	int step = -1;
 	if (rangeY < 0){
 				step = 1;
@@ -1667,9 +1667,10 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 
 		for(int i = x1; i < x2; i++){	
 			y = (rangeY * (i - x1) / rangeX) + y1;
-
+			
+			ST7735_OutUDec(slope);
 			for(int j = 0; j < slope; j++){
-				ST7735_DrawPixel(i, y+j*step, color); 
+				ST7735_DrawPixel(i, y, color); 
 			}
 			
 		}
@@ -1682,7 +1683,7 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 			y = (rangeY * (i - x1) / rangeX) + y1; 
 			
 			for(int j = 0; j < slope; j++){
-				ST7735_DrawPixel(i, y+j*step, color); 
+				ST7735_DrawPixel(i, y, color); 
 			}		
 		}
 	}

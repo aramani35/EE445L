@@ -430,6 +430,16 @@
               <FileType>1</FileType>
               <FilePath>.\ST7735.c</FilePath>
             </File>
+            <File>
+              <FileName>buttons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\buttons.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timers.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
