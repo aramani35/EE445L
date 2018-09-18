@@ -1670,7 +1670,7 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 			
 			ST7735_OutUDec(slope);
 			for(int j = 0; j < slope; j++){
-				ST7735_DrawPixel(i, y, color); 
+				ST7735_DrawPixel(i, y+step*j, color); 
 			}
 			
 		}
@@ -1683,7 +1683,7 @@ void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t co
 			y = (rangeY * (i - x1) / rangeX) + y1; 
 			
 			for(int j = 0; j < slope; j++){
-				ST7735_DrawPixel(i, y, color); 
+				ST7735_DrawPixel(i, y+step*j, color); 
 			}		
 		}
 	}
