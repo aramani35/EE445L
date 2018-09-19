@@ -4,5 +4,6 @@
 
 
 void Buttons_Init(void);
+void checkButtonPressed(void);
 
 #endif

@@ -4,6 +4,9 @@
 #include "buttons.h"
 #include "Timers.h"
 
+extern int setAlarm;
+int buttonData;
+
 void Buttons_Init(void) {
 	SYSCTL_RCGCGPIO_R |= 0x10;        // 1) activate clock for Port E
   while((SYSCTL_PRGPIO_R&0x10)==0); // allow time for clock to start
@@ -17,3 +20,11 @@ void Buttons_Init(void) {
 	
 	
 }
+
+void checkButtonPressed(void){
+	buttonData = GPIO_PORTE_DATA_R;
+	if (buttonData&0x03){
+		setAlarm = 1;
+	}
+}
+	

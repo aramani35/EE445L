@@ -3,6 +3,7 @@
 #include "../inc/tm4c123gh6pm.h"
 #include "PLL.h"
 #include "ST7735.h"
+#include "buttons.h"
 #include <math.h>
 
 #define PF2             (*((volatile uint32_t *)0x40025010))
@@ -40,19 +41,7 @@ void Timer0A_Init100HzInt(void){
 void Timer0A_Handler(void){
 //	timeBuff[buffIndex] = TIMER1_TAR_R;
   TIMER0_ICR_R = TIMER_ICR_TATOCINT;    // acknowledge timer0A timeout
-//	secs+=1;
-//	
-//	if(secs >= 60){
-//		secs = 0;
-//		mins += 1;
-//	}
-//	else if(mins >= 60){
-//		mins = 0;
-//		hrs += 1;
-//	}
-//	else if(hrs >= 24){
-//		hrs = 0;
-//	}
+	checkButtonPressed();
 
 }
 
@@ -80,6 +69,23 @@ void Timer1_Init(uint32_t period){
   TIMER1_CTL_R = 0x00000001;    // 10) enable TIMER1A
 }
 
+void printDigitalTime(int sec, int min, int hr){
+	ST7735_SetCursor(0,0);
+	if (hr<10)
+		ST7735_OutUDec(0);
+	ST7735_OutUDec(hr);
+	ST7735_OutChar(':');
+	if (min<10) 
+		ST7735_OutUDec(0);
+	ST7735_OutUDec(min);
+	ST7735_OutChar(':');
+	if (sec<10)
+		ST7735_OutUDec(0);
+	ST7735_OutUDec(sec);
+		ST7735_OutChar('\n');
+	ST7735_OutString(__DATE__);
+}
+
 void Timer1A_Handler(void){
   TIMER1_ICR_R = TIMER_ICR_TATOCINT;// acknowledge TIMER1A timeout
   secs+=1;
@@ -96,6 +102,7 @@ void Timer1A_Handler(void){
 	else if(hrs >= 24){
 		hrs = 0;
 	}
+	printDigitalTime(secs, mins, hrs);
 }
 
 

@@ -41,7 +41,7 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-/*
+
 const unsigned short Clock_1[] = {
  0xEF9F, 0xEFBF, 0xEFBF, 0xEFBF, 0xF79F, 0xF7BF, 0xF7BF, 0xF7BF, 0xF7DF, 0xF7BF, 0xF7BF, 0xF7DF, 0xF7DF, 0xF7DF, 0xF7DF, 0xF7BF,
  0xF7DF, 0xF7DF, 0xF7DF, 0xF7FF, 0xFFFF, 0xF7FF, 0xFFDF, 0xF7DF, 0xFFFF, 0xF7DF, 0xFFFF, 0xFFFF, 0xFFFF, 0xF7DF, 0xF7DF, 0xFFFF,
@@ -1054,9 +1054,9 @@ const unsigned short Clock_1[] = {
 
 
 };
-*/
 
 #include <math.h>
+#include "PWM.h"
 
 volatile int startSec;
 volatile int startMin;
@@ -1067,6 +1067,7 @@ int hrs;
 int minOrigX, minOrigY, hourOrigX, hourOrigY;
 int minX, minY, hourX, hourY;
 int secFlag = 0;
+int setAlarm = 0;
 
 
 
@@ -1085,14 +1086,16 @@ int main(void){
                                         // configure PF2 as GPIO
   GPIO_PORTF_PCTL_R = (GPIO_PORTF_PCTL_R&0xFFFFF00F)+0x00000000;
   GPIO_PORTF_AMSEL_R = 0;               // disable analog functionality on PF
-  PF2 = 0;                      // turn off LED
-//	ST7735_DrawBitmap(2,159,Clock_1,128,126);
+  PF2 = 0;                       // turn off LED
+	ST7735_DrawBitmap(2,159,Clock_1,128,126);
 //	ST7735_OutString(__DATE__);
-	ST7735_OutString(__TIME__);
+//	ST7735_OutChar(' ');
+//	ST7735_OutString(__TIME__);
   char* time = __TIME__;
 	hrs = ((time[0]-0x30)*10)+(time[1]-0x30);
 	mins = ((time[3]-0x30)*10)+(time[4]-0x30);
 	secs = ((time[6]-0x30)*10)+(time[7]-0x30);
+//	PWM0A_Init(40000,20000);
 	EnableInterrupts();
 //	char* hr = (time[0] + time[1]);
 	
@@ -1112,8 +1115,9 @@ int main(void){
 	ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
 	ST7735_Line(hourOrigX,hourOrigY,(int)hourX,(int)hourY,ST7735_RED);
 	while (1){
-
-		if(secFlag == 1){
+//		PWM0_ENABLE_R &= 0xFFFFFFFE; 
+		if(secFlag == 1 & setAlarm == 1){
+//			PWM0_ENABLE_R |= 0x00000001; 
 			PF1^=0x02;
 			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_WHITE);
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_WHITE);
@@ -1126,6 +1130,10 @@ int main(void){
 			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_RED);
 			secFlag = 0;
+		}
+		if(setAlarm){
+			ST7735_SetCursor(40,80);
+			ST7735_OutString("Would you like to set an alarm");
 		}
 	}
 	
