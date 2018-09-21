@@ -1555,7 +1555,7 @@ int main(void){
 				else{
 					if(!(GPIO_PORTF_DATA_R&0x1) & (timeOptions == 1)){				// if PF0 is pressed, continue alarm setup mode
 						while(!(GPIO_PORTF_DATA_R&0x1)){}
-						ST7735_DrawBitmap(2,30,black,128,30);
+//						ST7735_DrawBitmap(2,30,black,128,30);
 						ST7735_DrawBitmap(2,50,black,128,30);
 						ST7735_SetCursor(0,3);
 						ST7735_OutString("What time for clock?");

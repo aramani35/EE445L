@@ -80,6 +80,7 @@ void setAlarmTime(int in_t[]){
 // func will keep loop till pf4 is pressed confirming the clock time
 // intilaizes variables to 0 for hr, min, sec
 void inputClockTime(void){ 
+	startInputingDigits = 1;
 	setAlarm = 1;
 	alarmComplete = 0;
 	time[0] = 0;
@@ -90,10 +91,11 @@ void inputClockTime(void){
 		if (!(GPIO_PORTF_DATA_R&0x10)){		// Complete clock setup
 			while (!(GPIO_PORTF_DATA_R&0x10)){}
 			alarmComplete = 1;
+			startInputingDigits = 0;
 			hrs = time[0];
 			mins = time[1];
 			secs = time[2];
-			alarmActivatedFlag = 1;					// flag allows interrupt to compare time with alarm time
+//			alarmActivatedFlag = 1;					// flag allows interrupt to compare time with alarm time
 			break;
 		}
 	}

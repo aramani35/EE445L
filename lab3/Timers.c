@@ -81,7 +81,7 @@ void Timer0A_Handler(void){
 		
 	}
 	if (alarmActivatedFlag){
-		if((hrs >= hr_alarm & hrs <= (hr_alarm+1)) & (mins >= min_alarm & mins <= (min_alarm+1)) & (secs >= sec_alarm & secs <= sec_alarm+2)){
+		if((hrs == hr_alarm) & (mins == min_alarm) & (secs >= sec_alarm & secs <= sec_alarm+2)){
 			ringTheAlarm = 1;
 		}
 		if (!(GPIO_PORTF_DATA_R&0x1)){				// Complete alarm setup
