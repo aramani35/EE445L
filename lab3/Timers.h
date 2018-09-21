@@ -5,7 +5,8 @@
 
 void Timer0A_Init100HzInt();
 void checkAlarmTime();
-
+void printDigitalTime(int sec, int min, int hr);
+void printAlarmTime(void);
 
 // ***************** Timer1_Init ****************
 // Activate Timer1 interrupts to run user task periodically

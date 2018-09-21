@@ -1387,6 +1387,7 @@ const unsigned short Clock_1[] = {
 #define PF2 (*((volatile uint32_t *)0x40025010))
 #define PF0 (*((volatile uint32_t *)0x40025004))
 
+extern int alarmActivatedFlag, sec_alarm, min_alarm, hr_alarm;
 volatile int startSec;
 volatile int startMin;
 volatile double startHr;
@@ -1456,6 +1457,13 @@ int main(void){
 	while (1){
 		timeOptions=0;
 		
+//		if(displayAlarmActivatedFlag == 1){
+//			ST7735_SetCursor(0,1);
+//			ST7735_OutString("Alarm: ");
+//			printAlarmTime();
+////			printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//		}
+		
 		// If a sec has passed and we are currently 
 		// not configuring the alarm we will update hands
 		if(secFlag == 1 & setAlarm == 0){		
@@ -1477,7 +1485,8 @@ int main(void){
 		// an alarm or setting a new current time
 		if(setAlarm){
 			while(PF4 == 0){}
-			ST7735_DrawBitmap(2,50,black,128,30);
+			//ST7735_DrawBitmap(0,30,black,128,30);
+			ST7735_DrawBitmap(0,50,black,128,30);
 			ST7735_SetCursor(0,3);
 			ST7735_OutString("  Would you like to");
 			ST7735_SetCursor(0,4);
@@ -1488,7 +1497,8 @@ int main(void){
 						while(!(GPIO_PORTF_DATA_R&0x10)){}
 						setAlarm = 0;
 						timeOptions = 1;
-						ST7735_DrawBitmap(2,50,black,128,30);
+						////ST7735_DrawBitmap(0,30,black,128,30);
+						ST7735_DrawBitmap(0,50,black,128,30);
 						ST7735_SetCursor(0,3);
 						ST7735_OutString("  Would you like to");
 						ST7735_SetCursor(0,4);
@@ -1499,23 +1509,30 @@ int main(void){
 					if(!(GPIO_PORTF_DATA_R&0x10)){			// if PF4 pressed again, leave alarm setup mode
 						while(!(GPIO_PORTF_DATA_R&0x10)){}
 						timeOptions = 0;
-						ST7735_DrawBitmap(2,50,black,128,30);
-						ST7735_DrawBitmap(2,30,black,128,30);
+						ST7735_DrawBitmap(0,50,black,128,30);
+						//ST7735_DrawBitmap(0,30,black,128,30);
 						setAlarm = 0;
+//						if (alarmActivatedFlag == 1){
+//							ST7735_SetCursor(0,2);
+//							ST7735_OutString("Alarm: ");
+//							printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//						}
 						ST7735_DrawBitmap(2,159,Clock_1,128,126);
 						break;
 				  }
 				}
 				if(!(GPIO_PORTF_DATA_R&0x1) & (timeOptions == 0)){				// if PF0 is pressed, continue alarm setup mode
 					while(!(GPIO_PORTF_DATA_R&0x1)){}
-					ST7735_DrawBitmap(2,50,black,128,30);
+					ST7735_DrawBitmap(0,50,black,128,30);
+					//ST7735_DrawBitmap(0,30,black,128,30);
 					ST7735_SetCursor(0,3);
 					ST7735_OutString("What time for alarm?");
 					ST7735_SetCursor(0,4);
 					ST7735_OutString("     	00:00:00");
 					inputAlarmTime();									// This func configures alarm to be set
-						
-					ST7735_DrawBitmap(2,50,black,128,30);
+					
+					//ST7735_DrawBitmap(0,30,black,128,30);
+					ST7735_DrawBitmap(0,50,black,128,30);
 					ST7735_SetCursor(5,4);
 					pause = secFlag;
 					ST7735_OutString("Alarm Set!");
@@ -1527,6 +1544,9 @@ int main(void){
 						}
 					}
 					ST7735_DrawBitmap(2,159,Clock_1,128,126);
+//					ST7735_SetCursor(0,2);
+//					ST7735_OutString("Alarm: ");
+//					printDigitalTime(sec_alarm, min_alarm, hr_alarm);
 					secFlag = 0;
 					setAlarm = 0;
 					break;
@@ -1535,14 +1555,16 @@ int main(void){
 				else{
 					if(!(GPIO_PORTF_DATA_R&0x1) & (timeOptions == 1)){				// if PF0 is pressed, continue alarm setup mode
 						while(!(GPIO_PORTF_DATA_R&0x1)){}
+						ST7735_DrawBitmap(2,30,black,128,30);
 						ST7735_DrawBitmap(2,50,black,128,30);
 						ST7735_SetCursor(0,3);
-						ST7735_OutString(" What time for clock?");
+						ST7735_OutString("What time for clock?");
 						ST7735_SetCursor(0,4);
 						ST7735_OutString("     	00:00:00");
 						inputClockTime();				// This func configures clock to be set
-							
-						ST7735_DrawBitmap(2,50,black,128,30);
+						
+						//ST7735_DrawBitmap(0,30,black,128,30);
+						ST7735_DrawBitmap(0,50,black,128,30);
 						ST7735_SetCursor(5,4);
 						pause = secFlag;
 						ST7735_OutString("Clock Set!");
@@ -1553,6 +1575,11 @@ int main(void){
 								break;
 							}
 						}
+//						if (alarmActivatedFlag == 1){
+//							ST7735_SetCursor(0,2);
+//							ST7735_OutString("Alarm: ");
+//							printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//						}
 						ST7735_DrawBitmap(2,159,Clock_1,128,126);
 						secFlag = 0;
 						setAlarm = 0;

@@ -7,8 +7,11 @@
 #include <math.h>
 	
 #define PF1             (*((volatile uint32_t *)0x40025008))
-extern int secs, mins, hrs, secFlag, setAlarm, alarmActivatedFlag;
-extern int hr_alarm, min_alarm, sec_alarm;
+extern int secs, mins, hrs, secFlag, setAlarm, alarmActivatedFlag, displayAlarmActivatedFlag;
+extern int hr_alarm, min_alarm, sec_alarm, startInputingDigits;
+int alarmBeep = 1;
+int ringTheAlarm = 0;
+int displayTheAlarm = 0;
 int PF0=0;
 int PE0=0;
 int PE1=0;
@@ -20,6 +23,29 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 void (*PeriodicTask)(void);   // user function
+
+
+void printDigitalTime(int sec, int min, int hr){
+//	ST7735_SetCursor(0,0);
+	if (hr<10)
+		ST7735_OutUDec(0);
+	ST7735_OutUDec(hr);
+	ST7735_OutChar(':');
+	if (min<10) 
+		ST7735_OutUDec(0);
+	ST7735_OutUDec(min);
+	ST7735_OutChar(':');
+	if (sec<10)
+		ST7735_OutUDec(0);
+	ST7735_OutUDec(sec);
+		ST7735_OutChar('\n');
+	ST7735_SetCursor(9,0);
+//	ST7735_OutString(__DATE__);
+}
+
+void printAlarmTime(void){
+	printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+}
 
 void Timer0A_Init100HzInt(void){
   volatile uint32_t delay;
@@ -45,24 +71,48 @@ void Timer0A_Handler(void){
 //	timeBuff[buffIndex] = TIMER1_TAR_R;
   TIMER0_ICR_R = TIMER_ICR_TATOCINT;    // acknowledge timer0A timeout
 	checkButtonPressed();
-	if (setAlarm){
+	if (setAlarm & startInputingDigits){
 		x = GPIO_PORTE_DATA_R;
 		PF0 = (!(GPIO_PORTF_DATA_R&0x1));
 //		PE0 = (GPIO_PORTE_DATA_R&&0x1);
 		PE1 = (GPIO_PORTE_DATA_R&0x2) == 0x2;
 		buttonStatus(PF0, PE0, PE1);
+//		ST7735_SetCursor(3,0);
+		
 	}
 	if (alarmActivatedFlag){
 		if((hrs >= hr_alarm & hrs <= (hr_alarm+1)) & (mins >= min_alarm & mins <= (min_alarm+1)) & (secs >= sec_alarm & secs <= sec_alarm+2)){
-			PWM0_ENABLE_R |= 0x00000001; 
+			ringTheAlarm = 1;
 		}
 		if (!(GPIO_PORTF_DATA_R&0x1)){				// Complete alarm setup
 			while (!(GPIO_PORTF_DATA_R&0x1)){}
 			alarmActivatedFlag = 0;
+			displayAlarmActivatedFlag = 0;
+			displayTheAlarm = 0;
+			ringTheAlarm = 0;
 			PWM0_ENABLE_R &= 0xFFFFFFFE; 
 		}
+		if(ringTheAlarm==1){
+			if (alarmBeep) {	
+				PWM0_ENABLE_R |= 0x00000001; 
+			}
+			else {
+				PWM0_ENABLE_R &= 0xFFFFFFFE;
+			}
+		}
 	}
+	
+//	if(displayAlarmActivatedFlag == 1){
+//		if (alarmActivatedFlag == 1){
+//			ST7735_SetCursor(0,1);
+//			ST7735_OutString("Alarm: ");
+//			printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//		}
+//	}
+	
 }
+
+
 
 
 
@@ -89,28 +139,11 @@ void Timer1_Init(uint32_t period){
 }
 
 
-void printDigitalTime(int sec, int min, int hr){
-	ST7735_SetCursor(0,0);
-	if (hr<10)
-		ST7735_OutUDec(0);
-	ST7735_OutUDec(hr);
-	ST7735_OutChar(':');
-	if (min<10) 
-		ST7735_OutUDec(0);
-	ST7735_OutUDec(min);
-	ST7735_OutChar(':');
-	if (sec<10)
-		ST7735_OutUDec(0);
-	ST7735_OutUDec(sec);
-		ST7735_OutChar('\n');
-	ST7735_SetCursor(9,0);
-	ST7735_OutString(__DATE__);
-}
-
 void Timer1A_Handler(void){
   TIMER1_ICR_R = TIMER_ICR_TATOCINT;// acknowledge TIMER1A timeout
   secs+=1;
 	secFlag = 1;
+	alarmBeep ^= 0x01;
 	PF1^=0x02;
 	
 	if(secs >= 60){
@@ -124,6 +157,15 @@ void Timer1A_Handler(void){
 	else if(hrs >= 24){
 		hrs = 0;
 	}
+	ST7735_SetCursor(0,0);
 	printDigitalTime(secs, mins, hrs);
+	ST7735_OutString(__DATE__);
+	
+	if (alarmActivatedFlag == 1){
+		ST7735_SetCursor(0,1);
+		ST7735_OutString("Alarm: ");
+		printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+	}
+
 }
 

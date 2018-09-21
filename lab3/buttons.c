@@ -26,7 +26,8 @@ int alarmActivatedFlag = 0;
 int hr_alarm;
 int min_alarm;
 int sec_alarm;
-
+int displayAlarmActivatedFlag;
+int startInputingDigits = 0;
 void Buttons_Init(void) {
 //	SYSCTL_RCGCGPIO_R |= 0x10;        // 1) activate clock for Port E
 //  while((SYSCTL_PRGPIO_R&0x10)==0); // allow time for clock to start
@@ -102,6 +103,7 @@ void inputClockTime(void){
 // func will keep loop till pf4 is pressed confirming the alarm time
 // intilaizes variables to 0 for hr, min, sec
 void inputAlarmTime(void){ 
+	startInputingDigits = 1;
 	alarmComplete = 0;
 	time[0] = 0;
 	time[1] = 0;
@@ -112,10 +114,11 @@ void inputAlarmTime(void){
 		if (!(GPIO_PORTF_DATA_R&0x10)){		// Complete alarm setup
 			while (!(GPIO_PORTF_DATA_R&0x10)){}
 			alarmComplete = 1;
+			startInputingDigits = 0;
 			hr_alarm = time[0];
 			min_alarm = time[1];
 			sec_alarm = time[2];
-			alarmActivatedFlag = 1;					// flag allows interrupt to compare time with alarm time
+			alarmActivatedFlag = 1;					// flag allows interrupt to compare time with alarm time				
 			break;
 		}
 	}
