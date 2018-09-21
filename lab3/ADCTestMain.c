@@ -1398,6 +1398,7 @@ int minX, minY, hourX, hourY;
 int secFlag = 0;
 int setAlarm = 0;
 int pause;
+int timeOptions;
 
 
 void PortF_Init(void){ volatile uint32_t delay;
@@ -1413,19 +1414,6 @@ void PortF_Init(void){ volatile uint32_t delay;
   GPIO_PORTF_PUR_R = 0x11;          // enable pull-up on PF0 and PF4
   GPIO_PORTF_DEN_R = 0x1F;          // 7) enable digital I/O on PF4-0
 }
-	
-	
-//  SYSCTL_RCGCGPIO_R |= 0x20;        // 1) activate clock for Port F
-//  while((SYSCTL_PRGPIO_R&0x20)==0){}; // allow time for clock to start
-//                                    // 2) no need to unlock PF2, PF4
-//  GPIO_PORTF_PCTL_R &= ~0x000F0F00; // 3) regular GPIO
-//  GPIO_PORTF_AMSEL_R &= ~0x15;      // 4) disable analog function on PF2, PF4
-//  GPIO_PORTF_PUR_R |= 0x11;         // 5) pullup for PF4
-//  GPIO_PORTF_DIR_R |= 0x0E;         // 5) set direction to output
-//  GPIO_PORTF_AFSEL_R &= ~0x15;      // 6) regular port function
-//  GPIO_PORTF_DEN_R |= 0x1F;         // 7) enable digital port
-//	GPIO_PORTF_PUR_R |= 0x11;
-//}
 
 
 int main(void){
@@ -1442,16 +1430,14 @@ int main(void){
 	PF2 = 0;                       // turn off LED
 	ST7735_DrawBitmap(2,159,Clock_1,128,126);
 
-  char* time = __TIME__;
+  char* time = __TIME__;				// Record current time into program
 	hrs = ((time[0]-0x30)*10)+(time[1]-0x30);
 	mins = ((time[3]-0x30)*10)+(time[4]-0x30);
 	secs = ((time[6]-0x30)*10)+(time[7]-0x30);
 
 	EnableInterrupts();
-//	ST7735_SetCursor(9,0);
-//	ST7735_OutString(__DATE__);
 
-	
+	// Set up starting clock setup
 	minOrigX = 64;
 	minOrigY = 97;
 	hourOrigX = 64;
@@ -1465,9 +1451,14 @@ int main(void){
 
 	ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
 	ST7735_Line(hourOrigX,hourOrigY,(int)hourX,(int)hourY,ST7735_RED);
+	
+	// main processing of program done here
 	while (1){
-
-		if(secFlag == 1 & setAlarm == 0){
+		timeOptions=0;
+		
+		// If a sec has passed and we are currently 
+		// not configuring the alarm we will update hands
+		if(secFlag == 1 & setAlarm == 0){		
 
 			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_WHITE);
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_WHITE);
@@ -1479,9 +1470,11 @@ int main(void){
 	
 			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_RED);
-			secFlag = 0;
+			secFlag = 0;	// reset flag
 		}
 
+		// if PF4 is pressed then we have intitiated the option of having
+		// an alarm or setting a new current time
 		if(setAlarm){
 			while(PF4 == 0){}
 			ST7735_DrawBitmap(2,50,black,128,30);
@@ -1490,20 +1483,37 @@ int main(void){
 			ST7735_SetCursor(0,4);
 			ST7735_OutString("    set an alarm?");
 			while(1){
-				if(!(GPIO_PORTF_DATA_R&0x10)){
-					while(!(GPIO_PORTF_DATA_R&0x10)){}
-					setAlarm = 0;
-					ST7735_DrawBitmap(2,159,Clock_1,128,126);
-					break;
+				if (timeOptions == 0){
+					if(!(GPIO_PORTF_DATA_R&0x10)){			// if PF4 pressed again, leave alarm setup mode
+						while(!(GPIO_PORTF_DATA_R&0x10)){}
+						setAlarm = 0;
+						timeOptions = 1;
+						ST7735_DrawBitmap(2,50,black,128,30);
+						ST7735_SetCursor(0,3);
+						ST7735_OutString("  Would you like to");
+						ST7735_SetCursor(0,4);
+						ST7735_OutString("change current time?");
+					}
 				}
-				if(!(GPIO_PORTF_DATA_R&0x1)){
+				else {
+					if(!(GPIO_PORTF_DATA_R&0x10)){			// if PF4 pressed again, leave alarm setup mode
+						while(!(GPIO_PORTF_DATA_R&0x10)){}
+						timeOptions = 0;
+						ST7735_DrawBitmap(2,50,black,128,30);
+						ST7735_DrawBitmap(2,30,black,128,30);
+						setAlarm = 0;
+						ST7735_DrawBitmap(2,159,Clock_1,128,126);
+						break;
+				  }
+				}
+				if(!(GPIO_PORTF_DATA_R&0x1) & (timeOptions == 0)){				// if PF0 is pressed, continue alarm setup mode
 					while(!(GPIO_PORTF_DATA_R&0x1)){}
 					ST7735_DrawBitmap(2,50,black,128,30);
 					ST7735_SetCursor(0,3);
 					ST7735_OutString("What time for alarm?");
 					ST7735_SetCursor(0,4);
 					ST7735_OutString("     	00:00:00");
-					inputAlarmTime();
+					inputAlarmTime();									// This func configures alarm to be set
 						
 					ST7735_DrawBitmap(2,50,black,128,30);
 					ST7735_SetCursor(5,4);
@@ -1521,7 +1531,34 @@ int main(void){
 					setAlarm = 0;
 					break;
 				}
-			
+				
+				else{
+					if(!(GPIO_PORTF_DATA_R&0x1) & (timeOptions == 1)){				// if PF0 is pressed, continue alarm setup mode
+						while(!(GPIO_PORTF_DATA_R&0x1)){}
+						ST7735_DrawBitmap(2,50,black,128,30);
+						ST7735_SetCursor(0,3);
+						ST7735_OutString(" What time for clock?");
+						ST7735_SetCursor(0,4);
+						ST7735_OutString("     	00:00:00");
+						inputClockTime();				// This func configures clock to be set
+							
+						ST7735_DrawBitmap(2,50,black,128,30);
+						ST7735_SetCursor(5,4);
+						pause = secFlag;
+						ST7735_OutString("Clock Set!");
+						secFlag = 0;
+						while(1){
+							if (secFlag == pause){
+								ST7735_FillScreen(0); 
+								break;
+							}
+						}
+						ST7735_DrawBitmap(2,159,Clock_1,128,126);
+						secFlag = 0;
+						setAlarm = 0;
+						break;
+					}
+				}
 				
 			}
 		}

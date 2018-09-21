@@ -7,4 +7,5 @@ void Buttons_Init(void);
 void checkButtonPressed(void);
 void inputAlarmTime(void);
 void buttonStatus(int x, int y, int z);
+void inputClockTime(void);
 #endif

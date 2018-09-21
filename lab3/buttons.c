@@ -14,6 +14,7 @@
 #define PF2 (*((volatile uint32_t *)0x40025010))
 #define PF0 (*((volatile uint32_t *)0x40025004))
 extern int setAlarm;
+extern int secs, mins, hrs;
 int buttonData;
 volatile int pf4_button = 1;
 volatile int pe0_button = 0;
@@ -52,6 +53,7 @@ void checkButtonPressed(void){
 	}
 }
 
+// displays to lcd
 void setAlarmTime(int in_t[]){
 	if (in_t[0]>=24)
 		in_t[0] = 0;
@@ -74,7 +76,31 @@ void setAlarmTime(int in_t[]){
 	ST7735_OutUDec(in_t[2]);
 }
 
+// func will keep loop till pf4 is pressed confirming the clock time
+// intilaizes variables to 0 for hr, min, sec
+void inputClockTime(void){ 
+	setAlarm = 1;
+	alarmComplete = 0;
+	time[0] = 0;
+	time[1] = 0;
+	time[2] = 0;
+	index_time = 0;
+	while(!alarmComplete){		
+		if (!(GPIO_PORTF_DATA_R&0x10)){		// Complete clock setup
+			while (!(GPIO_PORTF_DATA_R&0x10)){}
+			alarmComplete = 1;
+			hrs = time[0];
+			mins = time[1];
+			secs = time[2];
+			alarmActivatedFlag = 1;					// flag allows interrupt to compare time with alarm time
+			break;
+		}
+	}
+}
 
+
+// func will keep loop till pf4 is pressed confirming the alarm time
+// intilaizes variables to 0 for hr, min, sec
 void inputAlarmTime(void){ 
 	alarmComplete = 0;
 	time[0] = 0;
@@ -83,13 +109,13 @@ void inputAlarmTime(void){
 	index_time = 0;
 	
 	while(!alarmComplete){		
-		if (!(GPIO_PORTF_DATA_R&0x10)){				// Complete alarm setup
+		if (!(GPIO_PORTF_DATA_R&0x10)){		// Complete alarm setup
 			while (!(GPIO_PORTF_DATA_R&0x10)){}
 			alarmComplete = 1;
 			hr_alarm = time[0];
 			min_alarm = time[1];
 			sec_alarm = time[2];
-			alarmActivatedFlag = 1;
+			alarmActivatedFlag = 1;					// flag allows interrupt to compare time with alarm time
 			break;
 		}
 	}
@@ -97,6 +123,10 @@ void inputAlarmTime(void){
 
 int pe0Flag = 0;
 int pe1Flag = 0;
+
+// Uses interrupt to check if a button has been pressed
+// if pf0 is pressed, rotate between hr,min,sec
+// if pe1 is pressed, increment number
 void buttonStatus(int x, int y, int z){
 	pe0_button = x;
 	pe1_button = z;
@@ -106,15 +136,13 @@ void buttonStatus(int x, int y, int z){
 		pe0Flag=0;
 
 	
-	if ((pe1_button == 1) & (pe1Flag==0)){//(GPIO_PORTE_DATA_R&0x2){						// Increase digit
+	if ((pe1_button == 1) & (pe1Flag==0)){			// Increase digit
 		pe1Flag = 1;
-			//while (pe1_button){}//(GPIO_PORTE_DATA_R&0x2){}
 		time[index_time]+=1;
 		setAlarmTime(time);
 	}
 		
-	if ((pe0_button ==1) & (pe0Flag == 0)){//(GPIO_PORTE_DATA_R&0x1){						// Rotate between hr,min,sec
-		//while (pe0_button){}//(GPIO_PORTE_DATA_R&0x1){}
+	if ((pe0_button ==1) & (pe0Flag == 0)){			// Rotate between hr,min,sec
 		pe0Flag = 1;
 		index_time+=1;
 		if (index_time > 2)
