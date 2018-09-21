@@ -8,24 +8,34 @@ Project File Date:  09/18/2018
 
 <h2>Output:</h2>
 Build target 'ADCSWTrigger'
-compiling buttons.c...
+compiling ADCTestMain.c...
 Timers.h(6): warning:  #1295-D: Deprecated declaration Timer0A_Init100HzInt - give arg types
   void Timer0A_Init100HzInt();
-buttons.c(57): warning:  #177-D: variable "secNum" was declared but never referenced
-        int secNum = 0;
-buttons.c(58): warning:  #177-D: variable "minNum" was declared but never referenced
-        int minNum = 0;
-buttons.c(59): warning:  #177-D: variable "hrNum" was declared but never referenced
-        int hrNum = 0;
-buttons.c: 4 warnings, 0 errors
+Timers.h(7): warning:  #1295-D: Deprecated declaration checkAlarmTime - give arg types
+  void checkAlarmTime();
+ADCTestMain.c: 2 warnings, 0 errors
 compiling Timers.c...
 linking...
-Program Size: Code=11564 RO-data=44836 RW-data=116 ZI-data=1132  
+Program Size: Code=12364 RO-data=44836 RW-data=184 ZI-data=1144  
+".\ADCSWTrigger.axf" - 0 Error(s), 2 Warning(s).
+Load "C:\\Users\\Tariq Muhanna\\Documents\\ValvanoWareTM4C123\\lab3\\ADCSWTrigger.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+ arg types
+  void checkAlarmTime();
+buttons.c: 2 warnings, 0 errors
+compiling Timers.c...
+compiling PWM.c...
+linking...
+Program Size: Code=12360 RO-data=44840 RW-data=184 ZI-data=1144  
 ".\ADCSWTrigger.axf" - 0 Error(s), 4 Warning(s).
 Load "C:\\Users\\Tariq Muhanna\\Documents\\ValvanoWareTM4C123\\lab3\\ADCSWTrigger.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
-Connection failed!, error code=&d
-Error: Flash Download failed  -  Target DLL has been cancelled
+Erase Done.
+Programming Done.
+Verify OK.
 Load "C:\\Users\\Tariq Muhanna\\Documents\\ValvanoWareTM4C123\\lab3\\ADCSWTrigger.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.

@@ -5,11 +5,14 @@
 #include "ST7735.h"
 #include "buttons.h"
 #include <math.h>
-
-#define PF2             (*((volatile uint32_t *)0x40025010))
-#define PF1             (*((volatile uint32_t *)0x40025008))
 	
-extern int secs, mins, hrs, secFlag;
+#define PF1             (*((volatile uint32_t *)0x40025008))
+extern int secs, mins, hrs, secFlag, setAlarm, alarmActivatedFlag;
+extern int hr_alarm, min_alarm, sec_alarm;
+int PF0=0;
+int PE0=0;
+int PE1=0;
+volatile int x;
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -42,7 +45,23 @@ void Timer0A_Handler(void){
 //	timeBuff[buffIndex] = TIMER1_TAR_R;
   TIMER0_ICR_R = TIMER_ICR_TATOCINT;    // acknowledge timer0A timeout
 	checkButtonPressed();
-
+	if (setAlarm){
+		x = GPIO_PORTE_DATA_R;
+		PF0 = (!(GPIO_PORTF_DATA_R&0x1));
+//		PE0 = (GPIO_PORTE_DATA_R&&0x1);
+		PE1 = (GPIO_PORTE_DATA_R&0x2) == 0x2;
+		buttonStatus(PF0, PE0, PE1);
+	}
+	if (alarmActivatedFlag){
+		if((hrs >= hr_alarm & hrs <= (hr_alarm+1)) & (mins >= min_alarm & mins <= (min_alarm+1)) & (secs >= sec_alarm & secs <= sec_alarm+2)){
+			PWM0_ENABLE_R |= 0x00000001; 
+		}
+		if (!(GPIO_PORTF_DATA_R&0x1)){				// Complete alarm setup
+			while (!(GPIO_PORTF_DATA_R&0x1)){}
+			alarmActivatedFlag = 0;
+			PWM0_ENABLE_R &= 0xFFFFFFFE; 
+		}
+	}
 }
 
 
@@ -69,6 +88,7 @@ void Timer1_Init(uint32_t period){
   TIMER1_CTL_R = 0x00000001;    // 10) enable TIMER1A
 }
 
+
 void printDigitalTime(int sec, int min, int hr){
 	ST7735_SetCursor(0,0);
 	if (hr<10)
@@ -83,6 +103,7 @@ void printDigitalTime(int sec, int min, int hr){
 		ST7735_OutUDec(0);
 	ST7735_OutUDec(sec);
 		ST7735_OutChar('\n');
+	ST7735_SetCursor(9,0);
 	ST7735_OutString(__DATE__);
 }
 
@@ -90,6 +111,7 @@ void Timer1A_Handler(void){
   TIMER1_ICR_R = TIMER_ICR_TATOCINT;// acknowledge TIMER1A timeout
   secs+=1;
 	secFlag = 1;
+	PF1^=0x02;
 	
 	if(secs >= 60){
 		secs = 0;
@@ -104,19 +126,4 @@ void Timer1A_Handler(void){
 	}
 	printDigitalTime(secs, mins, hrs);
 }
-
-
-
-//void Timer1_Init(void){
-//volatile uint32_t delay;
-//SYSCTL_RCGCTIMER_R |= 0x02; // 0) activate TIMER1
-//delay = SYSCTL_RCGCTIMER_R; // allow time to finish activating
-//TIMER1_CTL_R = 0x00000000; // 1) disable TIMER1A during setup
-//TIMER1_CFG_R = 0x00000000; // 2) configure for 32-bit mode
-//TIMER1_TAMR_R = 0x00000002; // 3) configure for periodic mode, down-count
-//TIMER1_TAILR_R = 0xFFFFFFFF; // 4) reload value
-//TIMER1_TAPR_R = 0; // 5) bus clock resolution
-//TIMER1_CTL_R = 0x00000001; // 10) enable TIMER1A
-//}
-
 

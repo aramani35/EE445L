@@ -4,6 +4,8 @@
 #define __TIMERSINTS_H__
 
 void Timer0A_Init100HzInt();
+void checkAlarmTime();
+
 
 // ***************** Timer1_Init ****************
 // Activate Timer1 interrupts to run user task periodically

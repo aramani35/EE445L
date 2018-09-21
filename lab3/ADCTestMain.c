@@ -1397,6 +1397,7 @@ int minOrigX, minOrigY, hourOrigX, hourOrigY;
 int minX, minY, hourX, hourY;
 int secFlag = 0;
 int setAlarm = 0;
+int pause;
 
 
 void PortF_Init(void){ volatile uint32_t delay;
@@ -1436,16 +1437,19 @@ int main(void){
 	Timer1_Init(80000000);
 	PortF_Init();
 	Buttons_Init();
-
-  PF2 = 0;                       // turn off LED
+  PWM0A_Init(40000,20000);
+  PWM0_ENABLE_R &= 0xFFFFFFFE; 
+	PF2 = 0;                       // turn off LED
 	ST7735_DrawBitmap(2,159,Clock_1,128,126);
 
   char* time = __TIME__;
 	hrs = ((time[0]-0x30)*10)+(time[1]-0x30);
 	mins = ((time[3]-0x30)*10)+(time[4]-0x30);
 	secs = ((time[6]-0x30)*10)+(time[7]-0x30);
-//	PWM0A_Init(40000,20000);
+
 	EnableInterrupts();
+//	ST7735_SetCursor(9,0);
+//	ST7735_OutString(__DATE__);
 
 	
 	minOrigX = 64;
@@ -1458,16 +1462,13 @@ int main(void){
 	hourX = hourOrigX + 31*sin(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
 	hourY = hourOrigY - 31*cos(((double)hrs+(double)mins/60) * 2*(3.14159)/12);
 	
-//	ST7735_Line(90,70,40,100,ST7735_BLUE);
-//	ST7735_Line(64,97,69,127,ST7735_BLUE);
-	
+
 	ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_BLUE);
 	ST7735_Line(hourOrigX,hourOrigY,(int)hourX,(int)hourY,ST7735_RED);
 	while (1){
-//		PWM0_ENABLE_R &= 0xFFFFFFFE; 
+
 		if(secFlag == 1 & setAlarm == 0){
-//			PWM0_ENABLE_R |= 0x00000001; 
-			PF1^=0x02;
+
 			ST7735_Line(minOrigX,minOrigY,minX,minY,ST7735_WHITE);
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_WHITE);
 		
@@ -1480,6 +1481,7 @@ int main(void){
 			ST7735_Line(hourOrigX,hourOrigY,hourX,hourY,ST7735_RED);
 			secFlag = 0;
 		}
+
 		if(setAlarm){
 			while(PF4 == 0){}
 			ST7735_DrawBitmap(2,50,black,128,30);
@@ -1502,22 +1504,24 @@ int main(void){
 					ST7735_SetCursor(0,4);
 					ST7735_OutString("     	00:00:00");
 					inputAlarmTime();
-					while(1){}
+						
+					ST7735_DrawBitmap(2,50,black,128,30);
+					ST7735_SetCursor(5,4);
+					pause = secFlag;
+					ST7735_OutString("Alarm Set!");
+					secFlag = 0;
+					while(1){
+						if (secFlag == pause){
+							ST7735_FillScreen(0); 
+							break;
+						}
+					}
+					ST7735_DrawBitmap(2,159,Clock_1,128,126);
+					secFlag = 0;
+					setAlarm = 0;
+					break;
 				}
 			
-				
-				
-				if((GPIO_PORTE_DATA_R&0x2)>0){
-					ST7735_OutString("  JDSNJDSN");
-					while(1){}
-				}
-//				if(PF0 == 0){
-//					while(PF0 == 0){}
-//					setAlarm = 0;
-//					ST7735_DrawBitmap(2,50,black,128,30);
-//					ST7735_OutString("  JDSNJDSN");
-//					while(1){}
-//				}
 				
 			}
 		}
