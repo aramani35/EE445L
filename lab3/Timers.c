@@ -17,6 +17,7 @@ int PF0=0;
 int PE0=0;
 int PE1=0;
 volatile int x;
+int eraseAlarm = 0;
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -39,12 +40,14 @@ void printDigitalTime(int sec, int min, int hr){
 	if (sec<10)
 		ST7735_OutUDec(0);
 	ST7735_OutUDec(sec);
-		ST7735_OutChar('\n');
-	ST7735_SetCursor(9,0);
+//		ST7735_OutChar('\n');
+//	ST7735_SetCursor(9,0);
 //	ST7735_OutString(__DATE__);
 }
 
 void printAlarmTime(void){
+	ST7735_SetCursor(0,15);
+	ST7735_OutString("Alarm: ");
 	printDigitalTime(sec_alarm, min_alarm, hr_alarm);
 }
 
@@ -90,6 +93,7 @@ void Timer0A_Handler(void){
 			while (!(GPIO_PORTF_DATA_R&0x1)){}
 			alarmActivatedFlag = 0;
 			displayAlarmActivatedFlag = 0;
+			eraseAlarm = 1;
 			displayTheAlarm = 0;
 			ringTheAlarm = 0;
 			PWM0_ENABLE_R &= 0xFFFFFFFE; 
@@ -164,10 +168,20 @@ void Timer1A_Handler(void){
 	printDigitalTime(secs, mins, hrs);
 //	ST7735_OutString(__DATE__);
 	
-	if (alarmActivatedFlag == 1 & mainSelection ==0){
-		ST7735_SetCursor(0,1);
-		ST7735_OutString("Alarm: ");
-		printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//	if (alarmActivatedFlag == 1 & mainSelection ==0){
+//		ST7735_SetCursor(0,1);
+//		ST7735_OutString("Alarm: ");
+//		printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//	}
+//	if (alarmActivatedFlag == 1){
+//		ST7735_SetCursor(0,15);
+//		ST7735_OutString("Alarm: ");
+//		printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//	}
+	if(eraseAlarm == 1){
+		eraseAlarm = 0;
+		ST7735_SetCursor(0,15);
+		ST7735_OutString("               ");
 	}
 
 }

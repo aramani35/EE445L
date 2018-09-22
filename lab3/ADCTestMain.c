@@ -1430,7 +1430,7 @@ int main(void){
   PWM0A_Init(40000,20000);
   PWM0_ENABLE_R &= 0xFFFFFFFE; 
 	PF2 = 0;                       // turn off LED
-	ST7735_DrawBitmap(2,159,Clock_1,128,126);
+	ST7735_DrawBitmap(2,140,Clock_1,128,126);
 	ST7735_SetCursor(9,0);
 	ST7735_OutString(__DATE__);
 
@@ -1443,9 +1443,9 @@ int main(void){
 
 	// Set up starting clock setup
 	minOrigX = 64;
-	minOrigY = 97;
+	minOrigY = (97-19);
 	hourOrigX = 64;
-	hourOrigY = 97;
+	hourOrigY = (97-19);
 	
 	minX = minOrigX + 39*sin(((double)mins+(double)secs/60) * 2*(3.14159)/60);
 	minY = minOrigY - 39*cos(((double)mins+(double)secs/60) * 2*(3.14159)/60);
@@ -1459,12 +1459,8 @@ int main(void){
 	// main processing of program done here
 	while (1){
 		timeOptions=0;
-		
-//		if(displayAlarmActivatedFlag == 1){
-//			ST7735_SetCursor(0,1);
-//			ST7735_OutString("Alarm: ");
-//			printAlarmTime();
-////			printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+//		if(eraseAlarm == 1){
+//			
 //		}
 		
 		// If a sec has passed and we are currently 
@@ -1521,7 +1517,7 @@ int main(void){
 //							ST7735_OutString("Alarm: ");
 //							printDigitalTime(sec_alarm, min_alarm, hr_alarm);
 //						}
-						ST7735_DrawBitmap(2,159,Clock_1,128,126);
+						ST7735_DrawBitmap(2,140,Clock_1,128,126);
 						mainSelection = 0;
 						break;
 				  }
@@ -1549,9 +1545,10 @@ int main(void){
 							break;
 						}
 					}
-					ST7735_DrawBitmap(2,159,Clock_1,128,126);
+					ST7735_DrawBitmap(2,140,Clock_1,128,126);
 					ST7735_SetCursor(9,0);
 					ST7735_OutString(__DATE__);
+					printAlarmTime();
 
 					secFlag = 0;
 					setAlarm = 0;
@@ -1582,8 +1579,10 @@ int main(void){
 								break;
 							}
 						}
-
-						ST7735_DrawBitmap(2,159,Clock_1,128,126);
+						if(alarmActivatedFlag == 1){
+							printAlarmTime();
+						}
+						ST7735_DrawBitmap(2,140,Clock_1,128,126);
 						ST7735_SetCursor(9,0);
 						ST7735_OutString(__DATE__);
 						secFlag = 0;
