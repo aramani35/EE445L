@@ -1400,6 +1400,7 @@ int secFlag = 0;
 int setAlarm = 0;
 int pause;
 int timeOptions;
+int mainSelection = 0;
 
 
 void PortF_Init(void){ volatile uint32_t delay;
@@ -1430,6 +1431,8 @@ int main(void){
   PWM0_ENABLE_R &= 0xFFFFFFFE; 
 	PF2 = 0;                       // turn off LED
 	ST7735_DrawBitmap(2,159,Clock_1,128,126);
+	ST7735_SetCursor(9,0);
+	ST7735_OutString(__DATE__);
 
   char* time = __TIME__;				// Record current time into program
 	hrs = ((time[0]-0x30)*10)+(time[1]-0x30);
@@ -1485,6 +1488,7 @@ int main(void){
 		// an alarm or setting a new current time
 		if(setAlarm){
 			while(PF4 == 0){}
+				mainSelection = 1;
 			//ST7735_DrawBitmap(0,30,black,128,30);
 			ST7735_DrawBitmap(0,50,black,128,30);
 			ST7735_SetCursor(0,3);
@@ -1518,13 +1522,14 @@ int main(void){
 //							printDigitalTime(sec_alarm, min_alarm, hr_alarm);
 //						}
 						ST7735_DrawBitmap(2,159,Clock_1,128,126);
+						mainSelection = 0;
 						break;
 				  }
 				}
 				if(!(GPIO_PORTF_DATA_R&0x1) & (timeOptions == 0)){				// if PF0 is pressed, continue alarm setup mode
 					while(!(GPIO_PORTF_DATA_R&0x1)){}
 					ST7735_DrawBitmap(0,50,black,128,30);
-					//ST7735_DrawBitmap(0,30,black,128,30);
+					mainSelection = 0;
 					ST7735_SetCursor(0,3);
 					ST7735_OutString("What time for alarm?");
 					ST7735_SetCursor(0,4);
@@ -1536,6 +1541,7 @@ int main(void){
 					ST7735_SetCursor(5,4);
 					pause = secFlag;
 					ST7735_OutString("Alarm Set!");
+					mainSelection = 0;
 					secFlag = 0;
 					while(1){
 						if (secFlag == pause){
@@ -1544,9 +1550,9 @@ int main(void){
 						}
 					}
 					ST7735_DrawBitmap(2,159,Clock_1,128,126);
-//					ST7735_SetCursor(0,2);
-//					ST7735_OutString("Alarm: ");
-//					printDigitalTime(sec_alarm, min_alarm, hr_alarm);
+					ST7735_SetCursor(9,0);
+					ST7735_OutString(__DATE__);
+
 					secFlag = 0;
 					setAlarm = 0;
 					break;
@@ -1568,6 +1574,7 @@ int main(void){
 						ST7735_SetCursor(5,4);
 						pause = secFlag;
 						ST7735_OutString("Clock Set!");
+						mainSelection = 0;
 						secFlag = 0;
 						while(1){
 							if (secFlag == pause){
@@ -1575,12 +1582,10 @@ int main(void){
 								break;
 							}
 						}
-//						if (alarmActivatedFlag == 1){
-//							ST7735_SetCursor(0,2);
-//							ST7735_OutString("Alarm: ");
-//							printDigitalTime(sec_alarm, min_alarm, hr_alarm);
-//						}
+
 						ST7735_DrawBitmap(2,159,Clock_1,128,126);
+						ST7735_SetCursor(9,0);
+						ST7735_OutString(__DATE__);
 						secFlag = 0;
 						setAlarm = 0;
 						break;

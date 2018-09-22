@@ -13,7 +13,7 @@
 #define PF4 (*((volatile uint32_t *)0x40025040))
 #define PF2 (*((volatile uint32_t *)0x40025010))
 #define PF0 (*((volatile uint32_t *)0x40025004))
-extern int setAlarm;
+extern int setAlarm, blinkDigits;
 extern int secs, mins, hrs;
 int buttonData;
 volatile int pf4_button = 1;
@@ -28,6 +28,10 @@ int min_alarm;
 int sec_alarm;
 int displayAlarmActivatedFlag;
 int startInputingDigits = 0;
+
+void DisableInterrupts(void); // Disable interrupts
+void EnableInterrupts(void);  // Enable interrupts
+
 void Buttons_Init(void) {
 //	SYSCTL_RCGCGPIO_R |= 0x10;        // 1) activate clock for Port E
 //  while((SYSCTL_PRGPIO_R&0x10)==0); // allow time for clock to start
@@ -56,6 +60,7 @@ void checkButtonPressed(void){
 
 // displays to lcd
 void setAlarmTime(int in_t[]){
+	DisableInterrupts();
 	if (in_t[0]>=24)
 		in_t[0] = 0;
 	if (in_t[1]>=60)
@@ -75,6 +80,7 @@ void setAlarmTime(int in_t[]){
 	if (in_t[2]<10)
 		ST7735_OutUDec(0);
 	ST7735_OutUDec(in_t[2]);
+	EnableInterrupts();
 }
 
 // func will keep loop till pf4 is pressed confirming the clock time
@@ -126,6 +132,66 @@ void inputAlarmTime(void){
 	}
 }
 
+
+void blinkHours(void){
+	ST7735_SetCursor(6,4);
+	if (blinkDigits == 1){
+		ST7735_OutString("  ");
+	}
+	else{
+		if (time[0]<10)
+			ST7735_OutUDec(0);
+		ST7735_OutUDec(time[0]);
+	}
+}
+
+void blinkMins(void){
+	ST7735_SetCursor(9,4);
+	if (blinkDigits == 1){
+		ST7735_OutString("  ");
+	}
+	else{
+		if (time[1]<10)
+			ST7735_OutUDec(0);
+		ST7735_OutUDec(time[1]);
+	}
+}
+
+void blinkSecs(void){
+	ST7735_SetCursor(12,4);
+	if (blinkDigits == 1){
+		ST7735_OutString("  ");
+	}
+	else{
+		if (time[2]<10)
+			ST7735_OutUDec(0);
+		ST7735_OutUDec(time[2]);
+	}
+}
+
+void removeBlinkEffect(int i){
+	if(i == 0){
+		ST7735_SetCursor(6,4);
+		if (time[0]<10)
+			ST7735_OutUDec(0);
+		ST7735_OutUDec(time[0]);
+	}
+	
+	if(i == 1){
+		ST7735_SetCursor(9,4);
+		if (time[1]<10)
+			ST7735_OutUDec(0);
+		ST7735_OutUDec(time[1]);
+	}
+	
+	else if (i==2){
+		ST7735_SetCursor(12,4);
+		if (time[2]<10)
+			ST7735_OutUDec(0);
+		ST7735_OutUDec(time[2]);
+	}
+}
+
 int pe0Flag = 0;
 int pe1Flag = 0;
 
@@ -149,8 +215,16 @@ void buttonStatus(int x, int y, int z){
 		
 	if ((pe0_button ==1) & (pe0Flag == 0)){			// Rotate between hr,min,sec
 		pe0Flag = 1;
+		removeBlinkEffect(index_time);
 		index_time+=1;
 		if (index_time > 2)
 			index_time=0;
 	}
+	
+	if (index_time == 0)
+		blinkHours();
+	if (index_time == 1)
+		blinkMins();
+	if (index_time == 2)
+		blinkSecs();
 }

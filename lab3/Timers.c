@@ -8,10 +8,11 @@
 	
 #define PF1             (*((volatile uint32_t *)0x40025008))
 extern int secs, mins, hrs, secFlag, setAlarm, alarmActivatedFlag, displayAlarmActivatedFlag;
-extern int hr_alarm, min_alarm, sec_alarm, startInputingDigits;
+extern int hr_alarm, min_alarm, sec_alarm, startInputingDigits, mainSelection;
 int alarmBeep = 1;
 int ringTheAlarm = 0;
 int displayTheAlarm = 0;
+int blinkDigits = 0;
 int PF0=0;
 int PE0=0;
 int PE1=0;
@@ -71,6 +72,7 @@ void Timer0A_Handler(void){
 //	timeBuff[buffIndex] = TIMER1_TAR_R;
   TIMER0_ICR_R = TIMER_ICR_TATOCINT;    // acknowledge timer0A timeout
 	checkButtonPressed();
+	blinkDigits ^= 0x1;
 	if (setAlarm & startInputingDigits){
 		x = GPIO_PORTE_DATA_R;
 		PF0 = (!(GPIO_PORTF_DATA_R&0x1));
@@ -84,7 +86,7 @@ void Timer0A_Handler(void){
 		if((hrs == hr_alarm) & (mins == min_alarm) & (secs >= sec_alarm & secs <= sec_alarm+2)){
 			ringTheAlarm = 1;
 		}
-		if (!(GPIO_PORTF_DATA_R&0x1)){				// Complete alarm setup
+		if (!(GPIO_PORTF_DATA_R&0x1) & (mainSelection == 0)){				// Complete alarm setup
 			while (!(GPIO_PORTF_DATA_R&0x1)){}
 			alarmActivatedFlag = 0;
 			displayAlarmActivatedFlag = 0;
@@ -157,11 +159,12 @@ void Timer1A_Handler(void){
 	else if(hrs >= 24){
 		hrs = 0;
 	}
+	
 	ST7735_SetCursor(0,0);
 	printDigitalTime(secs, mins, hrs);
-	ST7735_OutString(__DATE__);
+//	ST7735_OutString(__DATE__);
 	
-	if (alarmActivatedFlag == 1){
+	if (alarmActivatedFlag == 1 & mainSelection ==0){
 		ST7735_SetCursor(0,1);
 		ST7735_OutString("Alarm: ");
 		printDigitalTime(sec_alarm, min_alarm, hr_alarm);
