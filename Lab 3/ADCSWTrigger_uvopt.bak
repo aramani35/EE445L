@@ -115,10 +115,6 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>DLGUARM</Key>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>DLGDARM</Key>
           <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(9108=-1,-1,-1,-1,0)(9106=-1,-1,-1,-1,0)(9104=-1,-1,-1,-1,0)(9107=785,449,1238,720,1)(9102=884,166,1280,436,1)</Name>
         </SetRegEntry>
@@ -261,7 +257,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>271</TopLine>
+      <TopLine>272</TopLine>
       <CurrentLine>277</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\startup.s</PathWithFileName>
@@ -277,7 +273,7 @@
       <Focus>0</Focus>
       <ColumnNumber>13</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>64</TopLine>
+      <TopLine>65</TopLine>
       <CurrentLine>92</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\ADCSWTrigger.c</PathWithFileName>
@@ -293,7 +289,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1085</TopLine>
+      <TopLine>1098</TopLine>
       <CurrentLine>1114</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\ADCTestMain.c</PathWithFileName>
@@ -323,9 +319,9 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>25</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1654</TopLine>
+      <TopLine>1655</TopLine>
       <CurrentLine>1660</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\ST7735.c</PathWithFileName>
@@ -337,12 +333,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>6</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>19</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>18</CurrentLine>
+      <CurrentLine>3</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\buttons.c</PathWithFileName>
       <FilenameWithoutPath>buttons.c</FilenameWithoutPath>
@@ -362,6 +358,22 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\Timers.c</PathWithFileName>
       <FilenameWithoutPath>Timers.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>8</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>18</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>5</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\alarm.c</PathWithFileName>
+      <FilenameWithoutPath>alarm.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
