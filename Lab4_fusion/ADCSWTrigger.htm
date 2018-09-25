@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\ADCSWTrigger.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\ADCSWTrigger.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Mon Sep 24 15:10:38 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue Sep 25 12:53:32 2018
 <BR><P>
 <H3>Maximum Stack Usage =        296 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -13,10 +13,10 @@ __rt_entry_main &rArr; main &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_
 Functions with no stack information
 </H3><UL>
  <LI><a href="#[82]">Reset_Handler</a>
- <LI><a href="#[d5]">DisableInterrupts</a>
- <LI><a href="#[af]">EnableInterrupts</a>
- <LI><a href="#[bd]">StartCritical</a>
- <LI><a href="#[be]">EndCritical</a>
+ <LI><a href="#[fc]">DisableInterrupts</a>
+ <LI><a href="#[b0]">EnableInterrupts</a>
+ <LI><a href="#[be]">StartCritical</a>
+ <LI><a href="#[bf]">EndCritical</a>
  <LI><a href="#[139]">WaitForInterrupt</a>
  <LI><a href="#[a2]">__user_initial_stackheap</a>
 </UL>
@@ -34,8 +34,8 @@ Mutually Recursive functions
  <LI><a href="#[b]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b]">PendSV_Handler</a><BR>
  <LI><a href="#[c]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[c]">SysTick_Handler</a><BR>
  <LI><a href="#[1b]">ADC0Seq0_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1b]">ADC0Seq0_Handler</a><BR>
- <LI><a href="#[cf]">fillmessage</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[cf]">fillmessage</a><BR>
- <LI><a href="#[b4]">ESP8266_OutUDec</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b4]">ESP8266_OutUDec</a><BR>
+ <LI><a href="#[d0]">fillmessage</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[d0]">fillmessage</a><BR>
+ <LI><a href="#[b5]">ESP8266_OutUDec</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b5]">ESP8266_OutUDec</a><BR>
 </UL>
 <P>
 <H3>
@@ -130,7 +130,7 @@ Function Pointers
  <LI><a href="#[81]">SendInformation</a> from adctestmain.o(i.SendInformation) referenced from adctestmain.o(i.main)
  <LI><a href="#[29]">SysCtl_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[c]">SysTick_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[20]">Timer0A_Handler</a> from timers.o(i.Timer0A_Handler) referenced from startup.o(RESET)
+ <LI><a href="#[20]">Timer0A_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[21]">Timer0B_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[22]">Timer1A_Handler</a> from timers.o(i.Timer1A_Handler) referenced from startup.o(RESET)
  <LI><a href="#[23]">Timer1B_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
@@ -478,6 +478,9 @@ Global Symbols
 <P><STRONG><a name="[29]"></a>SysCtl_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
+<P><STRONG><a name="[20]"></a>Timer0A_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
 <P><STRONG><a name="[21]"></a>Timer0B_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
@@ -708,31 +711,30 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[d5]"></a>DisableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0A_Init100HzInt
+<P><STRONG><a name="[fc]"></a>DisableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[af]"></a>EnableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Init
+<P><STRONG><a name="[b0]"></a>EnableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Init
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bd]"></a>StartCritical</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Init
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
-<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Init
+<P><STRONG><a name="[be]"></a>StartCritical</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Init
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Init
 </UL>
 
-<P><STRONG><a name="[be]"></a>EndCritical</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Init
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
-<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Init
+<P><STRONG><a name="[bf]"></a>EndCritical</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Init
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Init
 </UL>
 
 <P><STRONG><a name="[139]"></a>WaitForInterrupt</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text), UNUSED)
@@ -792,7 +794,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
 <P><STRONG><a name="[97]"></a>strtol</STRONG> (Thumb, 112 bytes, Stack size 32 bytes, strtol.o(.text))
@@ -894,10 +896,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[80]"></a>Blynk_to_TM4C</STRONG> (Thumb, 222 bytes, Stack size 16 bytes, adctestmain.o(i.Blynk_to_TM4C))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = Blynk_to_TM4C &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
+<P><STRONG><a name="[80]"></a>Blynk_to_TM4C</STRONG> (Thumb, 226 bytes, Stack size 16 bytes, adctestmain.o(i.Blynk_to_TM4C))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
+<LI>Call Chain = Blynk_to_TM4C &rArr; clockEventsHandler &rArr; buttonStatus &rArr; blinkSecs &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutString
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockEventsHandler
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutString
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutChar
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
@@ -915,79 +919,79 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f3]"></a>Delay1ms</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, st7735.o(i.Delay1ms))
+<P><STRONG><a name="[f2]"></a>Delay1ms</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, st7735.o(i.Delay1ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay1ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
 </UL>
 
-<P><STRONG><a name="[b6]"></a>DelayMs</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, esp8266.o(i.DelayMs))
+<P><STRONG><a name="[b7]"></a>DelayMs</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, esp8266.o(i.DelayMs))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DelayMs
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Reset
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Reset
 </UL>
 
 <P><STRONG><a name="[a4]"></a>ESP8266_GetMessage</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_GetMessage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ESP8266_GetMessage
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
 
-<P><STRONG><a name="[ad]"></a>ESP8266_Init</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_Init))
+<P><STRONG><a name="[ae]"></a>ESP8266_Init</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
 <LI>Call Chain = ESP8266_Init &rArr; UART5_Init &rArr; Tx5Fifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b0]"></a>ESP8266_OutChar</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_OutChar))
+<P><STRONG><a name="[b1]"></a>ESP8266_OutChar</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_OutChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ESP8266_OutChar &rArr; copySoftwareToHardware5
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Put
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Put
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutString
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutString
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
 </UL>
 
-<P><STRONG><a name="[b3]"></a>ESP8266_OutString</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_OutString))
+<P><STRONG><a name="[b4]"></a>ESP8266_OutString</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_OutString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = ESP8266_OutString &rArr; ESP8266_OutChar &rArr; copySoftwareToHardware5
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
 </UL>
 
-<P><STRONG><a name="[b4]"></a>ESP8266_OutUDec</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, esp8266.o(i.ESP8266_OutUDec))
+<P><STRONG><a name="[b5]"></a>ESP8266_OutUDec</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, esp8266.o(i.ESP8266_OutUDec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32 + In Cycle
 <LI>Call Chain = ESP8266_OutUDec &rArr;  ESP8266_OutUDec (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
 </UL>
 
-<P><STRONG><a name="[b5]"></a>ESP8266_Reset</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_Reset))
+<P><STRONG><a name="[b6]"></a>ESP8266_Reset</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_Reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ESP8266_Reset &rArr; UART_OutString &rArr; UART_OutChar &rArr; copySoftwareToHardware
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutString
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayMs
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayMs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b7]"></a>ESP8266_SetupWiFi</STRONG> (Thumb, 260 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_SetupWiFi))
+<P><STRONG><a name="[b8]"></a>ESP8266_SetupWiFi</STRONG> (Thumb, 260 bytes, Stack size 8 bytes, esp8266.o(i.ESP8266_SetupWiFi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = ESP8266_SetupWiFi &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
@@ -996,11 +1000,11 @@ Global Symbols
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutChar
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Color
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutString
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutString
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_GetMessage
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayMs
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayMs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1008,23 +1012,23 @@ Global Symbols
 <P><STRONG><a name="[a9]"></a>Output_Color</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, st7735.o(i.Output_Color))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Output_Color
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetTextColor
+<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetTextColor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendInformation
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
 
-<P><STRONG><a name="[ba]"></a>Output_Init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, st7735.o(i.Output_Init))
+<P><STRONG><a name="[bb]"></a>Output_Init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, st7735.o(i.Output_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = Output_Init &rArr; ST7735_InitR &rArr; ST7735_FillScreen &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[fc]"></a>PLL_Init</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, pll.o(i.PLL_Init))
+<P><STRONG><a name="[fb]"></a>PLL_Init</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, pll.o(i.PLL_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1038,7 +1042,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d0]"></a>PortF_Input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, adctestmain.o(i.PortF_Input))
+<P><STRONG><a name="[d1]"></a>PortF_Input</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, adctestmain.o(i.PortF_Input))
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendInformation
 </UL>
@@ -1047,140 +1051,140 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
 
-<P><STRONG><a name="[b8]"></a>Rx5Fifo_Init</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, esp8266.o(i.Rx5Fifo_Init))
+<P><STRONG><a name="[b9]"></a>Rx5Fifo_Init</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, esp8266.o(i.Rx5Fifo_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = Rx5Fifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
-</UL>
-
-<P><STRONG><a name="[f6]"></a>Rx5Fifo_Put</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, esp8266.o(i.Rx5Fifo_Put))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware5
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
 </UL>
 
-<P><STRONG><a name="[f7]"></a>Rx5Fifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, esp8266.o(i.Rx5Fifo_Size))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware5
+<P><STRONG><a name="[f5]"></a>Rx5Fifo_Put</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, esp8266.o(i.Rx5Fifo_Put))
+<BR><BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware5
 </UL>
 
-<P><STRONG><a name="[bf]"></a>RxFifo_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, uart.o(i.RxFifo_Init))
+<P><STRONG><a name="[f6]"></a>Rx5Fifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, esp8266.o(i.Rx5Fifo_Size))
+<BR><BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware5
+</UL>
+
+<P><STRONG><a name="[c0]"></a>RxFifo_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, uart.o(i.RxFifo_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = RxFifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
 </UL>
-<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
-</UL>
-
-<P><STRONG><a name="[f4]"></a>RxFifo_Put</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, uart.o(i.RxFifo_Put))
-<BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware
+<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 </UL>
 
-<P><STRONG><a name="[f5]"></a>RxFifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uart.o(i.RxFifo_Size))
-<BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware
+<P><STRONG><a name="[f3]"></a>RxFifo_Put</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, uart.o(i.RxFifo_Put))
+<BR><BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware
 </UL>
 
-<P><STRONG><a name="[c0]"></a>ST7735_DrawBitmap</STRONG> (Thumb, 280 bytes, Stack size 40 bytes, st7735.o(i.ST7735_DrawBitmap))
+<P><STRONG><a name="[f4]"></a>RxFifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uart.o(i.RxFifo_Size))
+<BR><BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware
+</UL>
+
+<P><STRONG><a name="[c1]"></a>ST7735_DrawBitmap</STRONG> (Thumb, 280 bytes, Stack size 40 bytes, st7735.o(i.ST7735_DrawBitmap))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = ST7735_DrawBitmap &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c3]"></a>ST7735_DrawCharS</STRONG> (Thumb, 232 bytes, Stack size 48 bytes, st7735.o(i.ST7735_DrawCharS))
+<P><STRONG><a name="[c4]"></a>ST7735_DrawCharS</STRONG> (Thumb, 232 bytes, Stack size 48 bytes, st7735.o(i.ST7735_DrawCharS))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawString
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawString
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutChar
 </UL>
 
-<P><STRONG><a name="[c6]"></a>ST7735_DrawFastHLine</STRONG> (Thumb, 116 bytes, Stack size 32 bytes, st7735.o(i.ST7735_DrawFastHLine))
+<P><STRONG><a name="[c7]"></a>ST7735_DrawFastHLine</STRONG> (Thumb, 116 bytes, Stack size 32 bytes, st7735.o(i.ST7735_DrawFastHLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = ST7735_DrawFastHLine &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
+<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
 </UL>
 
-<P><STRONG><a name="[c7]"></a>ST7735_DrawFastVLine</STRONG> (Thumb, 116 bytes, Stack size 32 bytes, st7735.o(i.ST7735_DrawFastVLine))
+<P><STRONG><a name="[c8]"></a>ST7735_DrawFastVLine</STRONG> (Thumb, 116 bytes, Stack size 32 bytes, st7735.o(i.ST7735_DrawFastVLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = ST7735_DrawFastVLine &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
+<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
 </UL>
 
-<P><STRONG><a name="[c4]"></a>ST7735_DrawPixel</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, st7735.o(i.ST7735_DrawPixel))
+<P><STRONG><a name="[c5]"></a>ST7735_DrawPixel</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, st7735.o(i.ST7735_DrawPixel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ST7735_DrawPixel &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushColor
+<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushColor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
 </UL>
 
-<P><STRONG><a name="[c9]"></a>ST7735_DrawString</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, st7735.o(i.ST7735_DrawString))
+<P><STRONG><a name="[ca]"></a>ST7735_DrawString</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, st7735.o(i.ST7735_DrawString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
 </UL>
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutChar
 </UL>
 
-<P><STRONG><a name="[c5]"></a>ST7735_FillRect</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, st7735.o(i.ST7735_FillRect))
+<P><STRONG><a name="[c6]"></a>ST7735_FillRect</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, st7735.o(i.ST7735_FillRect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
 </UL>
 
-<P><STRONG><a name="[bc]"></a>ST7735_FillScreen</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, st7735.o(i.ST7735_FillScreen))
+<P><STRONG><a name="[bd]"></a>ST7735_FillScreen</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, st7735.o(i.ST7735_FillScreen))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = ST7735_FillScreen &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bb]"></a>ST7735_InitR</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, st7735.o(i.ST7735_InitR))
+<P><STRONG><a name="[bc]"></a>ST7735_InitR</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, st7735.o(i.ST7735_InitR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = ST7735_InitR &rArr; ST7735_FillScreen &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ce]"></a>ST7735_Line</STRONG> (Thumb, 292 bytes, Stack size 48 bytes, st7735.o(i.ST7735_Line))
+<P><STRONG><a name="[cf]"></a>ST7735_Line</STRONG> (Thumb, 292 bytes, Stack size 48 bytes, st7735.o(i.ST7735_Line))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = ST7735_Line &rArr; ST7735_DrawFastVLine &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastVLine
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastHLine
+<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastVLine
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastHLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1188,13 +1192,13 @@ Global Symbols
 <P><STRONG><a name="[ab]"></a>ST7735_OutChar</STRONG> (Thumb, 176 bytes, Stack size 16 bytes, st7735.o(i.ST7735_OutChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawString
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawString
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
+<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendInformation
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
@@ -1205,11 +1209,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1A_Handler
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printAlarmTime
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendInformation
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
@@ -1218,33 +1222,33 @@ Global Symbols
 <P><STRONG><a name="[aa]"></a>ST7735_OutUDec</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, st7735.o(i.ST7735_OutUDec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ST7735_OutUDec &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fillmessage
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawString
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fillmessage
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawString
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;removeBlinkEffect
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
+<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;removeBlinkEffect
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendInformation
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
 
-<P><STRONG><a name="[cd]"></a>ST7735_SetCursor</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, st7735.o(i.ST7735_SetCursor))
+<P><STRONG><a name="[ce]"></a>ST7735_SetCursor</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, st7735.o(i.ST7735_SetCursor))
 <BR><BR>[Called By]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1A_Handler
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;removeBlinkEffect
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;removeBlinkEffect
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printAlarmTime
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b9]"></a>ST7735_SetTextColor</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, st7735.o(i.ST7735_SetTextColor))
+<P><STRONG><a name="[ba]"></a>ST7735_SetTextColor</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, st7735.o(i.ST7735_SetTextColor))
 <BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Color
 </UL>
 
@@ -1255,44 +1259,26 @@ Global Symbols
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutChar
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Color
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Input
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM4C_to_Blynk
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Input
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> adctestmain.o(i.main)
 </UL>
-<P><STRONG><a name="[d1]"></a>TM4C_to_Blynk</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, adctestmain.o(i.TM4C_to_Blynk))
+<P><STRONG><a name="[d2]"></a>TM4C_to_Blynk</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, adctestmain.o(i.TM4C_to_Blynk))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = TM4C_to_Blynk &rArr; ESP8266_OutUDec &rArr;  ESP8266_OutUDec (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutString
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutUDec
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutString
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendInformation
-</UL>
-
-<P><STRONG><a name="[20]"></a>Timer0A_Handler</STRONG> (Thumb, 304 bytes, Stack size 8 bytes, timers.o(i.Timer0A_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
-<LI>Call Chain = Timer0A_Handler &rArr; buttonStatus &rArr; blinkSecs &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
-</UL>
-<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkButtonPressed
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
-</UL>
-<P><STRONG><a name="[d4]"></a>Timer0A_Init100HzInt</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, timers.o(i.Timer0A_Init100HzInt))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
-<LI>Call Chain = Timer0A_Init100HzInt
-</UL>
-<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[22]"></a>Timer1A_Handler</STRONG> (Thumb, 166 bytes, Stack size 8 bytes, timers.o(i.Timer1A_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = Timer1A_Handler &rArr; printDigitalTime &rArr; ST7735_OutUDec &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
@@ -1319,87 +1305,87 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f9]"></a>Tx5Fifo_Get</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, esp8266.o(i.Tx5Fifo_Get))
-<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
+<P><STRONG><a name="[f8]"></a>Tx5Fifo_Get</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, esp8266.o(i.Tx5Fifo_Get))
+<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
 </UL>
 
-<P><STRONG><a name="[d7]"></a>Tx5Fifo_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, esp8266.o(i.Tx5Fifo_Init))
+<P><STRONG><a name="[d4]"></a>Tx5Fifo_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, esp8266.o(i.Tx5Fifo_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = Tx5Fifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
-</UL>
-
-<P><STRONG><a name="[b1]"></a>Tx5Fifo_Put</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, esp8266.o(i.Tx5Fifo_Put))
-<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
 </UL>
 
-<P><STRONG><a name="[dc]"></a>Tx5Fifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, esp8266.o(i.Tx5Fifo_Size))
+<P><STRONG><a name="[b2]"></a>Tx5Fifo_Put</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, esp8266.o(i.Tx5Fifo_Put))
+<BR><BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+</UL>
+
+<P><STRONG><a name="[d9]"></a>Tx5Fifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, esp8266.o(i.Tx5Fifo_Size))
 <BR><BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Handler
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
 </UL>
 
-<P><STRONG><a name="[f8]"></a>TxFifo_Get</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, uart.o(i.TxFifo_Get))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
+<P><STRONG><a name="[f7]"></a>TxFifo_Get</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, uart.o(i.TxFifo_Get))
+<BR><BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
 </UL>
 
-<P><STRONG><a name="[d8]"></a>TxFifo_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, uart.o(i.TxFifo_Init))
+<P><STRONG><a name="[d5]"></a>TxFifo_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, uart.o(i.TxFifo_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = TxFifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EndCritical
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartCritical
 </UL>
-<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
+<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 </UL>
 
-<P><STRONG><a name="[df]"></a>TxFifo_Put</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, uart.o(i.TxFifo_Put))
+<P><STRONG><a name="[dc]"></a>TxFifo_Put</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, uart.o(i.TxFifo_Put))
 <BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutChar
 </UL>
 
-<P><STRONG><a name="[da]"></a>TxFifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uart.o(i.TxFifo_Size))
+<P><STRONG><a name="[d7]"></a>TxFifo_Size</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uart.o(i.TxFifo_Size))
 <BR><BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_Handler
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
 </UL>
 
 <P><STRONG><a name="[12]"></a>UART0_Handler</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, uart.o(i.UART0_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UART0_Handler &rArr; copySoftwareToHardware
 </UL>
-<BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Size
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware
+<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Size
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
 <P><STRONG><a name="[4a]"></a>UART5_Handler</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, esp8266.o(i.UART5_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UART5_Handler &rArr; copySoftwareToHardware5
 </UL>
-<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Size
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware5
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Size
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware5
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copyHardwareToSoftware5
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[ae]"></a>UART5_Init</STRONG> (Thumb, 190 bytes, Stack size 8 bytes, esp8266.o(i.UART5_Init))
+<P><STRONG><a name="[af]"></a>UART5_Init</STRONG> (Thumb, 190 bytes, Stack size 8 bytes, esp8266.o(i.UART5_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
 <LI>Call Chain = UART5_Init &rArr; Tx5Fifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Init
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
+<BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Init
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Init
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Init
 </UL>
 
-<P><STRONG><a name="[de]"></a>UART_Init</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, uart.o(i.UART_Init))
+<P><STRONG><a name="[db]"></a>UART_Init</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, uart.o(i.UART_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
 <LI>Call Chain = UART_Init &rArr; TxFifo_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Init
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1407,11 +1393,11 @@ Global Symbols
 <P><STRONG><a name="[a5]"></a>UART_OutChar</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, uart.o(i.UART_OutChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UART_OutChar &rArr; copySoftwareToHardware
 </UL>
-<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Put
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Put
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;copySoftwareToHardware
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutString
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
 
@@ -1420,145 +1406,155 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Reset
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Reset
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
 </UL>
 
-<P><STRONG><a name="[ec]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, fpclassify.o(i.__ARM_fpclassify))
-<BR><BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<P><STRONG><a name="[e9]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, fpclassify.o(i.__ARM_fpclassify))
+<BR><BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 </UL>
 
-<P><STRONG><a name="[e0]"></a>__ieee754_rem_pio2</STRONG> (Thumb, 832 bytes, Stack size 136 bytes, rred.o(i.__ieee754_rem_pio2))
+<P><STRONG><a name="[dd]"></a>__ieee754_rem_pio2</STRONG> (Thumb, 832 bytes, Stack size 136 bytes, rred.o(i.__ieee754_rem_pio2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
-<P><STRONG><a name="[e9]"></a>__kernel_cos</STRONG> (Thumb, 230 bytes, Stack size 48 bytes, cos_i.o(i.__kernel_cos))
+<P><STRONG><a name="[e6]"></a>__kernel_cos</STRONG> (Thumb, 230 bytes, Stack size 48 bytes, cos_i.o(i.__kernel_cos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = __kernel_cos &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 </UL>
 <BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
-<P><STRONG><a name="[ea]"></a>__kernel_poly</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, poly.o(i.__kernel_poly))
+<P><STRONG><a name="[e7]"></a>__kernel_poly</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, poly.o(i.__kernel_poly))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
 
-<P><STRONG><a name="[eb]"></a>__kernel_sin</STRONG> (Thumb, 224 bytes, Stack size 64 bytes, sin_i.o(i.__kernel_sin))
+<P><STRONG><a name="[e8]"></a>__kernel_sin</STRONG> (Thumb, 224 bytes, Stack size 64 bytes, sin_i.o(i.__kernel_sin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = __kernel_sin &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
-<P><STRONG><a name="[ed]"></a>__mathlib_dbl_underflow</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dunder.o(i.__mathlib_dbl_underflow))
-<BR><BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<P><STRONG><a name="[ea]"></a>__mathlib_dbl_underflow</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dunder.o(i.__mathlib_dbl_underflow))
+<BR><BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 </UL>
-<BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 </UL>
 
-<P><STRONG><a name="[ee]"></a>blinkHours</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, buttons.o(i.blinkHours))
+<P><STRONG><a name="[eb]"></a>blinkHours</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, buttons.o(i.blinkHours))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = blinkHours &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
 </UL>
 
-<P><STRONG><a name="[ef]"></a>blinkMins</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, buttons.o(i.blinkMins))
+<P><STRONG><a name="[ec]"></a>blinkMins</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, buttons.o(i.blinkMins))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = blinkMins &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
 </UL>
 
-<P><STRONG><a name="[f0]"></a>blinkSecs</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, buttons.o(i.blinkSecs))
+<P><STRONG><a name="[ed]"></a>blinkSecs</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, buttons.o(i.blinkSecs))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = blinkSecs &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
 </UL>
 
-<P><STRONG><a name="[d3]"></a>buttonStatus</STRONG> (Thumb, 200 bytes, Stack size 16 bytes, buttons.o(i.buttonStatus))
+<P><STRONG><a name="[ee]"></a>buttonStatus</STRONG> (Thumb, 200 bytes, Stack size 16 bytes, buttons.o(i.buttonStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = buttonStatus &rArr; blinkSecs &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;removeBlinkEffect
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
+<BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAlarmTime
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;removeBlinkEffect
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkSecs
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkMins
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blinkHours
 </UL>
-<BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0A_Handler
-</UL>
-
-<P><STRONG><a name="[d2]"></a>checkButtonPressed</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, buttons.o(i.checkButtonPressed))
-<BR><BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0A_Handler
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockEventsHandler
 </UL>
 
-<P><STRONG><a name="[fa]"></a>cos</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, cos.o(i.cos))
+<P><STRONG><a name="[f1]"></a>checkButtonPressed</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, buttons.o(i.checkButtonPressed))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockEventsHandler
+</UL>
+
+<P><STRONG><a name="[ad]"></a>clockEventsHandler</STRONG> (Thumb, 304 bytes, Stack size 8 bytes, timers.o(i.clockEventsHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
+<LI>Call Chain = clockEventsHandler &rArr; buttonStatus &rArr; blinkSecs &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkButtonPressed
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Blynk_to_TM4C
+</UL>
+
+<P><STRONG><a name="[f9]"></a>cos</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, cos.o(i.cos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = cos &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
-<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[cf]"></a>fillmessage</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, st7735.o(i.fillmessage))
+<P><STRONG><a name="[d0]"></a>fillmessage</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, st7735.o(i.fillmessage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12 + In Cycle
 <LI>Call Chain = fillmessage &rArr;  fillmessage (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fillmessage
+<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fillmessage
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fillmessage
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fillmessage
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 </UL>
 
@@ -1570,7 +1566,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8f]"></a>main</STRONG> (Thumb, 2774 bytes, Stack size 96 bytes, adctestmain.o(i.main))
+<P><STRONG><a name="[8f]"></a>main</STRONG> (Thumb, 2770 bytes, Stack size 96 bytes, adctestmain.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
 <LI>Call Chain = main &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
@@ -1578,37 +1574,36 @@ Global Symbols
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inputClockTime
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inputAlarmTime
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutString
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer3_Init
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer2_Init
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_Init
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0A_Init100HzInt
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Line
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM0A_Init
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Reset
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Init
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_SetupWiFi
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Reset
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_Init
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_Init
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Input
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Input
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_InitSWTriggerSeq3_Ch9
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
-<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -1616,14 +1611,14 @@ Global Symbols
 <P><STRONG><a name="[106]"></a>printAlarmTime</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, timers.o(i.printAlarmTime))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = printAlarmTime &rArr; printDigitalTime &rArr; ST7735_OutUDec &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printDigitalTime
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d6]"></a>printDigitalTime</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, timers.o(i.printDigitalTime))
+<P><STRONG><a name="[d3]"></a>printDigitalTime</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, timers.o(i.printDigitalTime))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = printDigitalTime &rArr; ST7735_OutUDec &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
@@ -1633,37 +1628,37 @@ Global Symbols
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printAlarmTime
 </UL>
 
-<P><STRONG><a name="[f2]"></a>removeBlinkEffect</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, buttons.o(i.removeBlinkEffect))
+<P><STRONG><a name="[f0]"></a>removeBlinkEffect</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, buttons.o(i.removeBlinkEffect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = removeBlinkEffect &rArr; ST7735_OutUDec &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
 </UL>
 
-<P><STRONG><a name="[f1]"></a>setAlarmTime</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, buttons.o(i.setAlarmTime))
+<P><STRONG><a name="[ef]"></a>setAlarmTime</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, buttons.o(i.setAlarmTime))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = setAlarmTime &rArr; ST7735_OutUDec &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutUDec
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutChar
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonStatus
 </UL>
 
 <P><STRONG><a name="[104]"></a>sin</STRONG> (Thumb, 166 bytes, Stack size 32 bytes, sin.o(i.sin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
-<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1677,13 +1672,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rt_ctype_table.o(.text)
 </UL>
-<P><STRONG><a name="[e2]"></a>__aeabi_dadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd))
+<P><STRONG><a name="[df]"></a>__aeabi_dadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
 <P><STRONG><a name="[109]"></a>_dadd</STRONG> (Thumb, 332 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd), UNUSED)
@@ -1695,15 +1690,15 @@ Global Symbols
 <P><STRONG><a name="[10d]"></a>__fpl_dcheck_NaN1</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dcheck1.o(x$fpl$dcheck1))
 <BR><BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_return_NaN
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 </UL>
 
-<P><STRONG><a name="[fb]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
+<P><STRONG><a name="[fa]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
 <P><STRONG><a name="[10f]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -1711,39 +1706,39 @@ Global Symbols
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[e4]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix))
+<P><STRONG><a name="[e1]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2iz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
 
 <P><STRONG><a name="[110]"></a>_dfix</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[e5]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
+<P><STRONG><a name="[e2]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
 <P><STRONG><a name="[144]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt), UNUSED)
 
-<P><STRONG><a name="[e7]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
-<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<P><STRONG><a name="[e4]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
+<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
 <P><STRONG><a name="[145]"></a>_dfltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu), UNUSED)
 
-<P><STRONG><a name="[e3]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
+<P><STRONG><a name="[e0]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
 
 <P><STRONG><a name="[111]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul), UNUSED)
@@ -1765,12 +1760,12 @@ Global Symbols
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd
 </UL>
 
-<P><STRONG><a name="[e6]"></a>__aeabi_drsub</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, daddsub_clz.o(x$fpl$drsb))
+<P><STRONG><a name="[e3]"></a>__aeabi_drsub</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, daddsub_clz.o(x$fpl$drsb))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_drsub
 </UL>
-<BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
 
 <P><STRONG><a name="[112]"></a>_drsb</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, daddsub_clz.o(x$fpl$drsb), UNUSED)
@@ -1778,13 +1773,13 @@ Global Symbols
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd1
 </UL>
 
-<P><STRONG><a name="[e1]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
+<P><STRONG><a name="[de]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dsub
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
 
 <P><STRONG><a name="[114]"></a>_dsub</STRONG> (Thumb, 464 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub), UNUSED)
@@ -1798,15 +1793,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcheck_NaN1
 </UL>
 
-<P><STRONG><a name="[e8]"></a>__ARM_scalbn</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, scalbn.o(x$fpl$scalbn))
+<P><STRONG><a name="[e5]"></a>__ARM_scalbn</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, scalbn.o(x$fpl$scalbn))
 <BR><BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcheck_NaN1
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
 <P><STRONG><a name="[115]"></a>__fpl_cmpreturn</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, trapv.o(x$fpl$trapveneer))
@@ -1816,99 +1811,99 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[cb]"></a>commandList</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, st7735.o(i.commandList))
+<P><STRONG><a name="[cc]"></a>commandList</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, st7735.o(i.commandList))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = commandList &rArr; Delay1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
+<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 </UL>
 
-<P><STRONG><a name="[ca]"></a>commonInit</STRONG> (Thumb, 340 bytes, Stack size 8 bytes, st7735.o(i.commonInit))
+<P><STRONG><a name="[cb]"></a>commonInit</STRONG> (Thumb, 340 bytes, Stack size 8 bytes, st7735.o(i.commonInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = commonInit &rArr; commandList &rArr; Delay1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 </UL>
 
-<P><STRONG><a name="[c8]"></a>pushColor</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, st7735.o(i.pushColor))
+<P><STRONG><a name="[c9]"></a>pushColor</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, st7735.o(i.pushColor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = pushColor
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
 </UL>
 
-<P><STRONG><a name="[c1]"></a>setAddrWindow</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, st7735.o(i.setAddrWindow))
+<P><STRONG><a name="[c2]"></a>setAddrWindow</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, st7735.o(i.setAddrWindow))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastVLine
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastHLine
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
-</UL>
-
-<P><STRONG><a name="[cc]"></a>writecommand</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, st7735.o(i.writecommand))
-<BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastVLine
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastHLine
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
 </UL>
 
-<P><STRONG><a name="[c2]"></a>writedata</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, st7735.o(i.writedata))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastVLine
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastHLine
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushColor
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
+<P><STRONG><a name="[cd]"></a>writecommand</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, st7735.o(i.writecommand))
+<BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 </UL>
 
-<P><STRONG><a name="[db]"></a>copyHardwareToSoftware</STRONG> (Thumb, 36 bytes, Stack size 4 bytes, uart.o(i.copyHardwareToSoftware))
+<P><STRONG><a name="[c3]"></a>writedata</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, st7735.o(i.writedata))
+<BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastVLine
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawFastHLine
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushColor
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
+</UL>
+
+<P><STRONG><a name="[d8]"></a>copyHardwareToSoftware</STRONG> (Thumb, 36 bytes, Stack size 4 bytes, uart.o(i.copyHardwareToSoftware))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = copyHardwareToSoftware
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Size
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Put
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Size
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RxFifo_Put
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_Handler
 </UL>
 
-<P><STRONG><a name="[d9]"></a>copySoftwareToHardware</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, uart.o(i.copySoftwareToHardware))
+<P><STRONG><a name="[d6]"></a>copySoftwareToHardware</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, uart.o(i.copySoftwareToHardware))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = copySoftwareToHardware
 </UL>
-<BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Size
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Get
+<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Size
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TxFifo_Get
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutChar
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_Handler
 </UL>
 
-<P><STRONG><a name="[dd]"></a>copyHardwareToSoftware5</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, esp8266.o(i.copyHardwareToSoftware5))
+<P><STRONG><a name="[da]"></a>copyHardwareToSoftware5</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, esp8266.o(i.copyHardwareToSoftware5))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = copyHardwareToSoftware5
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Size
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Put
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Size
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rx5Fifo_Put
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Handler
 </UL>
 
-<P><STRONG><a name="[b2]"></a>copySoftwareToHardware5</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, esp8266.o(i.copySoftwareToHardware5))
+<P><STRONG><a name="[b3]"></a>copySoftwareToHardware5</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, esp8266.o(i.copySoftwareToHardware5))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = copySoftwareToHardware5
 </UL>
-<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Size
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Get
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Size
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tx5Fifo_Get
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_OutChar
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Handler
 </UL>
 

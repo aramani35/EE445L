@@ -1512,7 +1512,13 @@ void Blynk_to_TM4C(void){int j; char data;
     UART_OutString(Pin_Float);
     UART_OutString("\n\r");
 #endif
+		clockEventsHandler();
   }  
+	
+	
+	
+	
+	
 }
 
 void SendInformation(void){
@@ -1556,7 +1562,7 @@ int main(void){
   ST7735_InitR(INITR_REDTAB);
 	SYSCTL_RCGCGPIO_R |= 0x20;            // activate port F
   ADC0_InitSWTriggerSeq3_Ch9();         // allow time to finish activating
-  Timer0A_Init100HzInt();               // set up Timer0A for 100 Hz interrupts
+//  Timer0A_Init100HzInt();               // set up Timer0A for 100 Hz interrupts
 	Timer1_Init(80000000);
 	PortF_Init();
 	Buttons_Init();
