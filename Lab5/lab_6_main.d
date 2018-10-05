@@ -1,0 +1,9 @@
+.\lab_6_main.o: Lab_6_Main.c
+.\lab_6_main.o: ..//inc//tm4c123gh6pm.h
+.\lab_6_main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\lab_6_main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\lab_6_main.o: DAC.h
+.\lab_6_main.o: SysTick.h
+.\lab_6_main.o: Music.h
+.\lab_6_main.o: Timer0A.h
+.\lab_6_main.o: Switches.h
