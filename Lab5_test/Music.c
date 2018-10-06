@@ -3,6 +3,15 @@
 #include "..//inc//tm4c123gh6pm.h"
 
 
+#define PF1       (*((volatile uint32_t *)0x40025008))
+#define PF2       (*((volatile uint32_t *)0x40025010))
+#define PF3       (*((volatile uint32_t *)0x40025020))
+#define LEDS      (*((volatile uint32_t *)0x40025038))
+#define RED       0x02
+#define BLUE      0x04
+#define GREEN     0x08
+
+
 //const uint16_t wave[32] = {
 //  2048*2,2448*2,2832*2,3186*2,3496*2,3751*2,3940*2,4057*2,4095*2,4057*2,3940*2,
 //  3751*2,3496*2,3186*2,2832*2,2448*2,2048*2,1648*2,1264*2,910*2,600*2,345*2,
@@ -117,6 +126,7 @@ void Song_PlayHandler(void){
 
 int index_test = 0;
 void Song_PlayHandler1(void){
+	LEDS ^= GREEN;
 	index_test++;
 	index_test = index_test%25;
 	musicPlay(HappyBdaySong[index_test]);
