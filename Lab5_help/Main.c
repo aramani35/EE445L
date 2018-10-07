@@ -67,8 +67,7 @@ void PortF_Init(void) {
 	GPIO_PORTF_AMSEL_R = 0;						// disable analog functionality on PF
 }
 
-const Song song = {90, mary_lamb};
-const Song Prelude = {128, ff7_pre};
+const Song SOS = {46, song_of_storms};
 bool Play_mode = true;
 void Pause(void);
 
@@ -78,14 +77,14 @@ int main(void){
   PLL_Init(Bus80MHz);								// bus clock at 50 MHz
 	PortF_Init();
   LEDS = 0;													// turn all LEDs off
-	DAC_Init(0);
+	DAC_Init(0x1000);
 	Buttons_Init();
 	SysTick_Init();
 	//Timer0A_Init(&Song_PlayHandler, F20KHZ);	// initialize timer0A (20,000 Hz)
   Timer0A_Init(&Song_PlayHandler, F16HZ);		// initialize timer0A (16 Hz)
   EnableInterrupts();
 	
-	Song_PlayInit(song);
+	Song_PlayInit(SOS);
 	Pause();
 
   while(1){

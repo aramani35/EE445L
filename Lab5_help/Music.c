@@ -39,15 +39,15 @@ const unsigned short bassoon[64] = {
 /**
  * Get the current pitch for an instrument with the specified voice index.
  */
-uint16_t Instrument_CurrentVoltage(uint32_t voiceIndex) {
+uint16_t Instrument_CurrentVoltage(uint32_t index_of_sound) {
 	Instrument currentVoice = Song_CurrentNote()->voice;
 	switch(currentVoice) {
-		case Flute: return flute[voiceIndex % 64];
-		case Bassoon: return bassoon[voiceIndex % 64];
-		case Oboe: return oboe[voiceIndex % 64];
-		case Trumpet: return trumpet[voiceIndex % 64];
+		case Flute: return flute[index_of_sound % 64];
+		case Bassoon: return bassoon[index_of_sound % 64];
+		case Oboe: return oboe[index_of_sound % 64];
+		case Trumpet: return trumpet[index_of_sound % 64];
 	}
-	return Wave[voiceIndex % 64];
+	return Wave[index_of_sound % 64];
 }
 
 uint16_t Instrument_EnvelopeMultiplier(uint32_t timeIndex) {
@@ -84,350 +84,39 @@ void Song_PlayHandler(void){
 	}
 }
 
-Note ff7_pre[] = {				// Final Fantasy 7 Prelude, 128 notes total
-{ B3 , Eighth , Trumpet } ,
-{ C3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ F3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ C4 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ F4 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ C5 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ F5 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ C6 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ A6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ C6 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ F5 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ C5 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ F4 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ C4 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ F3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ C3 , Eighth , Trumpet } ,
-{ G3 , Eighth , Trumpet } ,
-{ A3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ G3 , Eighth , Trumpet } ,
-{ A3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ G4 , Eighth , Trumpet } ,
-{ A4 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ G5 , Eighth , Trumpet } ,
-{ A5 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ A6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ C6 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ F5 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ C5 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ F4 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ C4 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ F3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ C3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ F3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ C4 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ F4 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ C5 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ F5 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ C6 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ A6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ C6 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ F5 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ C5 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ F4 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ C4 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ F3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ C3 , Eighth , Trumpet } ,
-{ G3 , Eighth , Trumpet } ,
-{ A3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-{ G3 , Eighth , Trumpet } ,
-{ A3 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ G4 , Eighth , Trumpet } ,
-{ A4 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ G5 , Eighth , Trumpet } ,
-{ A5 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ A6 , Eighth , Trumpet } ,
-{ E6 , Eighth , Trumpet } ,
-{ D6 , Eighth , Trumpet } ,
-{ C6 , Eighth , Trumpet } ,
-{ B5 , Eighth , Trumpet } ,
-{ F5 , Eighth , Trumpet } ,
-{ D5 , Eighth , Trumpet } ,
-{ C5 , Eighth , Trumpet } ,
-{ B4 , Eighth , Trumpet } ,
-{ F4 , Eighth , Trumpet } ,
-{ D4 , Eighth , Trumpet } ,
-{ C4 , Eighth , Trumpet } ,
-{ B3 , Eighth , Trumpet } ,
-{ F3 , Eighth , Trumpet } ,
-{ D3 , Eighth , Trumpet } ,
-
-{0, Whole, Flute}
-};
-Note mary_lamb[] = {
-	//1 BAGABBBAAABDD
-	//  1111112112112
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Half, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
+Note song_of_storms[] = {
+	{D, Eighth, Flute},
+	{F, Eighth, Flute},
+	{D1, Half, Flute},
+	{D, Eighth, Flute},
+	{F, Eighth, Flute},
+	{D1, Half, Flute},
+	{E1, Quarter, Flute},
+	{E1, Eighth, Flute},
+	{F1, Eighth, Flute},
+	{E1, Eighth, Flute},
+	{F1, Eighth, Flute},
+	{E1, Eighth, Flute},
+	{C, Eighth, Flute},
 	{A, Half, Flute},
-	{B, Quarter, Flute},
+	{A, Quarter, Flute},
+	{A, Quarter, Flute},
 	{D, Quarter, Flute},
-	{D, Half, Flute},
-	
-	//2 BAGABBBBAABAG
-	//  1111111111114
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Whole, Flute},
-	
-	//1 BAGABBBAAABDD
-	//  1111112112112
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Half, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
+	{F, Eighth, Flute},
+	{G, Eighth, Flute},
 	{A, Half, Flute},
-	{B, Quarter, Flute},
+	{A, Quarter, Flute},
+	{A, Quarter, Flute},
 	{D, Quarter, Flute},
-	{D, Half, Flute},
-	
-	//3 BAGABBBBAABAGD
-	//  11111111111131
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{D, Quarter, Flute},
-
-	//1 BAGABBBAAABDD
-	//  1111112112112
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Half, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
-	{A, Half, Flute},
-	{B, Quarter, Flute},
-	{D, Quarter, Flute},
-	{D, Half, Flute},
-	
-	//3 BAGABBBBAABAGD
-	//  11111111111131
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{D, Quarter, Flute},
-
-	//1 BAGABBBAAABDD
-	//  1111112112112
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Half, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
-	{A, Half, Flute},
-	{B, Quarter, Flute},
-	{D, Quarter, Flute},
-	{D, Half, Flute},
-
-	//2 BAGABBBBAABAG
-	//  1111111111114
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{A, Quarter, Flute},
-	{B, Quarter, Flute},
-	{A, Quarter, Flute},
-	{G, Whole, Flute},
+	{F, Eighth, Flute},
+	{G, Eighth, Flute},
+	{E, Half, Flute},
+	{E, Quarter, Flute},
+	{D, Eighth, Flute},
+	{F, Eighth, Flute},
+	{D1, Half, Flute},
+	{E1, Quarter, Flute},
+	{E1, Eighth, Flute},
 	
 	{0, Whole, Flute}
-};
-
-Note around_world[] = {
-//base
-//AAAAB
-//44488
-	{A3, Quarter, Bassoon},
-	{A3, Quarter, Bassoon},
-	{A3, Quarter, Bassoon},
-	{A3, Eighth, Bassoon},
-	{B3, Eighth, Bassoon},
-//CCCCD
-//44488
-	{C3, Quarter, Bassoon},
-	{C3, Quarter, Bassoon},
-	{C3, Quarter, Bassoon},
-	{C3, Eighth, Bassoon},
-	{D3, Eighth, Bassoon},
-//EEEE
-//4444
-	{E3, Quarter, Bassoon},
-	{E3, Quarter, Bassoon},
-	{E3, Quarter, Bassoon},
-	{E3, Quarter, Bassoon},
-//F# EDCBAG
-//8  888884
-	{F3, Eighth, Bassoon},
-	{E3, Eighth, Bassoon},
-	{D3, Eighth, Bassoon},
-	{C3, Eighth, Bassoon},
-	{B3, Eighth, Bassoon},
-	{A3, Eighth, Bassoon},
-	{G2, Quarter, Bassoon},
-//AAAAB
-//44488
-	{A3, Quarter, Bassoon},
-	{A3, Quarter, Bassoon},
-	{A3, Quarter, Bassoon},
-	{A3, Eighth, Bassoon},
-	{B3, Eighth, Bassoon},
-//CCCCD
-//44488
-	{C3, Quarter, Bassoon},
-	{C3, Quarter, Bassoon},
-	{C3, Quarter, Bassoon},
-	{C3, Eighth, Bassoon},
-	{D3, Eighth, Bassoon},
-//EEEE
-//4444
-	{E3, Quarter, Bassoon},
-	{E3, Quarter, Bassoon},
-	{E3, Quarter, Bassoon},
-	{E3, Quarter, Bassoon},
-//F# EDCBA
-//8  888884
-	{F3, Eighth, Bassoon},
-	{E3, Eighth, Bassoon},
-	{D3, Eighth, Bassoon},
-	{C3, Eighth, Bassoon},
-	{B3, Eighth, Bassoon},
-	{A3, Eighth, Bassoon},
-	{G2, Quarter, Bassoon},
-
-//treble
-//AAAAB
-//44488
-//CCCCD
-//44488
-//EEEE
-//4444
-//F# EDCBAG
-//8  888884
-//AAAAB
-//44488
-//CCCCD
-//44488
-//EEEE
-//4444
-//F# EDCBAG
-//8  888884
-	{0, 0, Bassoon}
-
 };

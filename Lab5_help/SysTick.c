@@ -64,21 +64,21 @@ void SysTick_Init(void){
 // SysTick Interupt Handler
 extern uint32_t Systick_one_sec;
 
-uint32_t voiceIndex = 0;
-Note *previousNote = 0;
+uint32_t index_of_sound = 0;
+Note *prev_note = 0;
 void SysTick_Handler(void) {
-	if(voiceIndex > 2000)
-		DAC_Output((Instrument_CurrentVoltage(voiceIndex) - 2048) /* * Instrument_EnvelopeMultiplier(voiceIndex) / ENVELOPE_SCALE */ + 2048);
+	if(index_of_sound > 2000)
+		DAC_Output((Instrument_CurrentVoltage(index_of_sound) - 2048) /* * Instrument_EnvelopeMultiplier(index_of_sound) / ENVELOPE_SCALE */ + 2048);
 	Note *newNote = Song_CurrentNote();
-	if(newNote != previousNote) {
-		previousNote = newNote;
+	if(newNote != prev_note) {
+		prev_note = newNote;
 		if(newNote->pitch == 0)
 			NVIC_ST_RELOAD_R = 0;
 		else
-			NVIC_ST_RELOAD_R = 800000 / newNote->pitch;
-		voiceIndex %= 64;
+			NVIC_ST_RELOAD_R = newNote->pitch;
+		index_of_sound %= 64;
 	}
-	voiceIndex += 1;
+	index_of_sound += 1;
 }
 
 // Time delay using busy wait.

@@ -86,10 +86,9 @@ void Pause(void) {
 	TIMER0_CTL_R = 0x00000000;
 }
 
-extern const Song song;
-extern const Song Prelude;
+extern const Song SOS;
 
 void Rewind(void) {
 	Pause();
-	Song_PlayInit(Prelude);
+	Song_PlayInit(SOS);
 }
