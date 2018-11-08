@@ -1,0 +1,1 @@
+.\adcswtrigger.o: ADCSWTrigger.c
