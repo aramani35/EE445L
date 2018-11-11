@@ -48,9 +48,9 @@ int main(void){ int32_t data;
   UART_Init();              // initialize UART device
 	ST7735_InitR(INITR_REDTAB);
 	ADC0_InitTimer0ATriggerSeq3(9, 80000);
-	
+	ST7735_PlotClear(0,4000);
 	EnableInterrupts();
-
+	
   while(1){
 		ST7735_SetCursor(0, 0);
 		int currentTemperature = ConvertToTemperature(ADC_FIFO_CurrentValue());
@@ -59,25 +59,29 @@ int main(void){ int32_t data;
 		ST7735_OutString(".");
 		ST7735_OutUDec(currentTemperature % 100);
 		ST7735_SetCursor(0, 2);
+		ST7735_OutUDec(ADC_FIFO_CurrentValue());
 
+		ST7735_PlotPoint(currentTemperature); 
+		ST7735_PlotNextErase();  
+		
 //	for(int i = 0; i < FIFO_SIZE; i += 1) {	
 //		int adc_data = 128 - ConvertToTemperature(ADC_FIFO_Get()[i]) * 2 / 100;
-//		ST7735_PlotLine(adc_data); 
-//		ST7735_PlotNext();
+//		ST7735_PlotPoint(adc_data); 
+//		ST7735_PlotNextErase();  
 //	}
 		
-		for(int i = 0; i < FIFO_SIZE; i += 1) {
-			ST7735_DrawPixel(i+1, old_point+1, ST7735_BLACK);
-			ST7735_DrawPixel(i+1, old_point, ST7735_BLACK);
-			ST7735_DrawPixel(i, old_point+1, ST7735_BLACK);
-			ST7735_DrawPixel(i, old_point, ST7735_BLACK);
-			int32_t point = 128 - ConvertToTemperature(ADC_FIFO_Get()[i]) * 2 / 100;
-			old_point = point;
-			ST7735_DrawPixel(i+1, point+1, ST7735_RED);
-			ST7735_DrawPixel(i+1, point, ST7735_RED);
-			ST7735_DrawPixel(i, point+1, ST7735_RED);
-			ST7735_DrawPixel(i, point, ST7735_RED);
-		}
+//		for(int i = 0; i < FIFO_SIZE; i += 1) {
+//			ST7735_DrawPixel(i+1, old_point+1, ST7735_BLACK);
+//			ST7735_DrawPixel(i+1, old_point, ST7735_BLACK);
+//			ST7735_DrawPixel(i, old_point+1, ST7735_BLACK);
+//			ST7735_DrawPixel(i, old_point, ST7735_BLACK);
+//			int32_t point = 128 - ConvertToTemperature(ADC_FIFO_Get()[i]) * 2 / 100;
+//			old_point = point;
+//			ST7735_DrawPixel(i+1, point+1, ST7735_RED);
+//			ST7735_DrawPixel(i+1, point, ST7735_RED);
+//			ST7735_DrawPixel(i, point+1, ST7735_RED);
+//			ST7735_DrawPixel(i, point, ST7735_RED);
+//		}
 		WaitForInterrupt();
 	}
 	
