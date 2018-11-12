@@ -114,3 +114,6 @@ void UART_OutUHex(uint32_t number);
 // Output: Null terminated string
 // -- Modified by Agustinus Darmawan + Mingjie Qiu --
 void UART_InString(char *bufPt, uint16_t max);
+
+void UART_InString2(char *bufPt, uint16_t max);
+

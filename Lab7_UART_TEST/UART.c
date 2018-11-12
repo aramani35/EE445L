@@ -43,29 +43,14 @@
 // Input: none
 // Output: none
 void UART_Init(void){
-//  SYSCTL_RCGCUART_R |= 0x01;            // activate UART0
-//  SYSCTL_RCGCGPIO_R |= 0x01;            // activate port A
-//  while((SYSCTL_PRGPIO_R&0x01) == 0){};
-//  UART0_CTL_R &= ~UART_CTL_UARTEN;      // disable UART
-//  UART0_IBRD_R = 104;//27;                    // IBRD = int(50,000,000 / (16 * 115,200)) = int(27.1267)
-//  UART0_FBRD_R = 11;//8;                     // FBRD = int(0.1267 * 64 + 0.5) = 8
-//                                        // 8 bit word length (no parity bits, one stop bit, FIFOs)
-//  UART0_LCRH_R = (UART_LCRH_WLEN_8|UART_LCRH_FEN);
-//  UART0_CTL_R |= 0x301;                 // enable UART
-//  GPIO_PORTA_AFSEL_R |= 0x03;           // enable alt funct on PA1-0
-//  GPIO_PORTA_DEN_R |= 0x03;             // enable digital I/O on PA1-0
-//                                        // configure PA1-0 as UART
-//  GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R&0xFFFFFF00)+0x00000011;
-//  GPIO_PORTA_AMSEL_R &= ~0x03;          // disable analog functionality on PA
-	SYSCTL_RCGCUART_R |= 0x00000008; // Clock for UART 3
+ 	SYSCTL_RCGCUART_R |= 0x00000008; // Clock for UART 3
 	SYSCTL_RCGCGPIO_R |= 0x00000004; // Clock for port C
-//	SYSCTL_RCGC_GPIO_R |= 0x00000004; // Clock for port C
 	GPIO_PORTC_DEN_R |= 0x000000C0; // Set Digital Enable on PC6 and PC7
 	GPIO_PORTC_AFSEL_R |= 0x000000C0; // Set Alternate Func on PC6 and PC7 
 	GPIO_PORTC_PCTL_R |= (0x01000000|0x10000000); // Set 6 HalfByte or 7 HalfByte
 	UART3_CTL_R &= ~(0x00000001); // Disable Uart	
-	UART3_IBRD_R = 104; // IBRD = int (16,000,000 / (16 * 9600)) = int (104.16406)	
-	UART3_FBRD_R = 11 ; // FBRD = int (0.16406 * 64 + 0.5 ) = 11
+	UART3_IBRD_R = 520; // IBRD = int (80,000,000 / (16 * 9600)) = int (520.833333333)	
+	UART3_FBRD_R = 53;  // FBRD = int (0.83333333 * 64 + 0.5 ) = 53
 	UART3_LCRH_R = (0x00000060); // 8 bit word Length or Enable Uart Fifo
 	UART3_CC_R = 0x00000000; // Use System Clock for Uar
 	UART3_CTL_R |= 0x00000001; //Enable Uart
@@ -81,16 +66,16 @@ void UART_Init(void){
 // Input: none
 // Output: ASCII code for key typed
 char UART_InChar(void){
-  while((UART0_FR_R&UART_FR_RXFE) != 0);
-  return((char)(UART0_DR_R&0xFF));
+  while((UART3_FR_R&UART_FR_RXFE) != 0);
+  return((char)(UART3_DR_R&0xFF));
 }
 //------------UART_OutChar------------
 // Output 8-bit to serial port
 // Input: letter is an 8-bit ASCII character to be transferred
 // Output: none
 void UART_OutChar(char data){
-  while((UART0_FR_R&UART_FR_TXFF) != 0);
-  UART0_DR_R = data;
+  while((UART3_FR_R&UART_FR_TXFF) != 0);
+  UART3_DR_R = data;
 }
 
 
@@ -232,7 +217,7 @@ void UART_InString(char *bufPt, uint16_t max) {
 int length=0;
 char character;
   character = UART_InChar();
-  while(character != CR){
+  while(character != '.'){  // CR originally
     if(character == BS){
       if(length){
         bufPt--;
@@ -250,3 +235,34 @@ char character;
   }
   *bufPt = 0;
 }
+
+//------------UART_InString2------------
+// Non busy-wait version of InString
+void UART_InString2(char *bufPt, uint16_t max) {
+	int length = 0;
+	char character;
+	
+	character = UART3_FR_R&UART_FR_RXFE;
+	if(character != 0) {
+		character = UART_InChar();
+		*bufPt = character;
+		while (character != '.') {
+			if(character == BS){
+				if(length){
+					bufPt--;
+					length--;
+					UART_OutChar(BS);
+				}
+			}
+			else if (length < max) {
+				*bufPt = character;
+				bufPt++;
+				length++;
+				UART_OutChar(character);
+			}
+			character = UART_InChar();
+		}
+	}
+	*bufPt = 0;
+}
+		

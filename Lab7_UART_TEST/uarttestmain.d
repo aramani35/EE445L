@@ -1,5 +1,6 @@
 .\uarttestmain.o: UARTTestMain.c
 .\uarttestmain.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\uarttestmain.o: C:\Keil\ARM\ARMCC\bin\..\include\String.h
 .\uarttestmain.o: PLL.h
 .\uarttestmain.o: UART.h
 .\uarttestmain.o: ../inc/tm4c123gh6pm.h

@@ -23,6 +23,7 @@
 // U0Rx (VCP receive) connected to PA0
 // U0Tx (VCP transmit) connected to PA1
 #include <stdint.h>
+#include <String.h>
 #include "PLL.h"
 #include "UART.h"
 #include "../inc/tm4c123gh6pm.h"
@@ -91,74 +92,45 @@ void OutCRLF(void){
 //debug code
 int main(void){
   char ch;
+	char prev = '*';
+	char prevString[20] = "afhuapf";
   char string[20];  // global to assist in debugging
-  uint32_t n;
+  uint32_t n = 0;
+	uint32_t prevn = 0;
+	
 	PortF_Init();
-  PLL_Init(Bus50MHz);       // 50  MHz
+  PLL_Init(Bus80MHz);       // 50  MHz
   ST7735_InitR(INITR_REDTAB);
 	ST7735_FillScreen(ST7735_BLACK); 
 	ST7735_SetCursor(0,0);
 	UART_Init();              // initialize UART
 	SysTick_Init();
-	
+	ST7735_SetCursor(0,0);
 	
   unsigned char rx_data;
 	int c;
-//  OutCRLF();
-//  for(ch='A'; ch<='Z'; ch=ch+1){// print the uppercase alphabet
-//    UART_OutChar(ch);
-//  }
-//  OutCRLF();
-//  UART_OutChar(' ');
-//  for(ch='a'; ch<='z'; ch=ch+1){// print the lowercase alphabet
-//    UART_OutChar(ch);
-//  }
-//  OutCRLF();
-//  UART_OutChar('-');
-//  UART_OutChar('-');
-//  UART_OutChar('>');
 	c=0;
+	for (int i=0; i<20; i++) {
+		string[i] = prevString[i];
+	}
   while(1){
-		
-		rx_data = (UART3_DR_R&0xFF);//UART3_DR_R;
-		c=rx_data;
-		if (c>0) {
+		n = UART_InUDec();
+		if(n != prevn) {
 			ST7735_SetCursor(0,0);
-			ST7735_OutUDec(c);
-			PF2 ^= 0x04;
+			ST7735_OutUDec(n);
+			prevn = n;
 		}
-		if (c == 9|c==39) {
-			PF1=0x01;
-		}
-		if (c==0){
-			PF1=0x01;
-		}
-		else {
-			PF1=0;
-		}
-		
-//			for (int i=0; i<1000000; i++){}
-//			PF1 ^= 0x02;
-//		rx_data = UART3_DR_R;
-//		c=rx_data;
-//		if (c=='a'){
-//			PF3= 0x08;
+//    UART_InString2(string,19);
+//		if (strcmp(string,prevString) != 0) {
+//			ST7735_SetCursor(0,0);
+//			ST7735_OutString(string);
+//			for (int i=0; i<20; i++) {
+//				prevString[i] = string[i];
+//			}
 //		}
-//			n=0;
-//			n=UART_InUDec();
-////			ch = UART_InChar();
-//			if (n > 0) { PF1 ^=0x02; }
 		
-//    UART_OutString("InString: ");
-//    UART_InString(string,19);
-//    UART_OutString(" OutString="); UART_OutString(string); OutCRLF();
-
-//    UART_OutString("InUDec: ");  n=UART_InUDec();
-//    UART_OutString(" OutUDec="); UART_OutUDec(n); OutCRLF();
-
-//    UART_OutString("InUHex: ");  n=UART_InUHex();
-//    UART_OutString(" OutUHex="); UART_OutUHex(n); OutCRLF();
-
+		
+		
   }
 }
 
@@ -178,17 +150,3 @@ void UART3_Handler(void) {
 		
 	}
 }
-
-
-/*
-Input command codes:
-Turn on the light: 	28
-Turn off the light:	224
-Play music:					252
-Turn on the TV:			142	
-What's the time:		282
-Right:							128
-Stop:								240
-Mode 2:							280
-
-*/

@@ -3,39 +3,19 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\Tariq Muhanna\Documents\ValvanoWareTM4C123\Lab7_UART_TEST\UART.uvproj
-Project File Date:  10/17/2018
+C:\Users\Abhishek\Documents\ValvanoWareTM4C123\Lab7_UART_TEST\UART.uvproj
+Project File Date:  11/11/2018
 
 <h2>Output:</h2>
 Build target 'UART'
-compiling UARTTestMain.c...
-../inc/tm4c123gh6pm.h(428): warning:  #47-D: incompatible redefinition of macro "UART3_DR_R" (declared at line 40 of "UART.h")
-  #define UART3_DR_R              (*((volatile uint32_t *)0x4000F000))
-UARTTestMain.c(60): warning:  #177-D: variable "rx_data" was declared but never referenced
-        unsigned char rx_data;
-UARTTestMain.c(61): warning:  #177-D: variable "c" was declared but never referenced
-        unsigned char c;
-UARTTestMain.c(93): warning:  #177-D: variable "ch" was declared but never referenced
-    char ch;
-UARTTestMain.c(94): warning:  #177-D: variable "string" was declared but never referenced
-    char string[20];  // global to assist in debugging
-UARTTestMain.c(95): warning:  #177-D: variable "n" was declared but never referenced
-    uint32_t n;
-UARTTestMain.c(166): warning:  #177-D: variable "u" was declared but never referenced
-        int u=0,i=0,lu=0,ru=0;
-UARTTestMain.c(166): warning:  #177-D: variable "i" was declared but never referenced
-        int u=0,i=0,lu=0,ru=0;
-UARTTestMain.c(166): warning:  #177-D: variable "lu" was declared but never referenced
-        int u=0,i=0,lu=0,ru=0;
-UARTTestMain.c(166): warning:  #177-D: variable "ru" was declared but never referenced
-        int u=0,i=0,lu=0,ru=0;
-UARTTestMain.c(168): warning:  #550-D: variable "c" was set but never used
-        unsigned char c;
-UARTTestMain.c: 11 warnings, 0 errors
 linking...
-Program Size: Code=3300 RO-data=2052 RW-data=44 ZI-data=1132  
-".\UART.axf" - 0 Error(s), 11 Warning(s).
-Load "C:\\Users\\Tariq Muhanna\\Documents\\ValvanoWareTM4C123\\Lab7_UART_TEST\\UART.axf" 
+Program Size: Code=3512 RO-data=2072 RW-data=44 ZI-data=1132  
+".\UART.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Abhishek\\Documents\\ValvanoWareTM4C123\\Lab7_UART_TEST\\UART.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Connection failed!, error code=&d
+Error: Flash Download failed  -  Target DLL has been cancelled
+Load "C:\\Users\\Abhishek\\Documents\\ValvanoWareTM4C123\\Lab7_UART_TEST\\UART.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
@@ -43,12 +23,38 @@ Verify OK.
 </pre>
 </body>
 </html>
-anna\\Documents\\ValvanoWareTM4C123\\Lab7_UART_TEST\\UART.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Erase Done.
-Programming Done.
-Verify OK.
-Load "C:\\Users\\Tariq Muhanna\\Documents\\ValvanoWareTM4C123\\Lab7_UART_TEST\\UART.axf" 
+tile uint32_t *)0x4000F000))
+UARTTestMain.c(61): warning:  #177-D: variable "rx_data" was declared but never referenced
+        unsigned char rx_data;
+UARTTestMain.c(62): warning:  #177-D: variable "c" was declared but never referenced
+        unsigned char c;
+UARTTestMain.c(94): warning:  #177-D: variable "ch" was declared but never referenced
+    char ch;
+UARTTestMain.c(95): warning:  #177-D: variable "prev" was declared but never referenced
+        char prev = '*';
+UARTTestMain.c(97): warning:  #550-D: variable "string" was set but never used
+    char string[20];  // global to assist in debugging
+UARTTestMain.c(110): warning:  #177-D: variable "rx_data" was declared but never referenced
+    unsigned char rx_data;
+UARTTestMain.c(111): warning:  #550-D: variable "c" was set but never used
+        int c;
+UARTTestMain.c(138): warning:  #177-D: variable "u" was declared but never referenced
+        int u=0,i=0,lu=0,ru=0;
+UARTTestMain.c(138): warning:  #177-D: variable "i" was declared but never referenced
+        int u=0,i=0,lu=0,ru=0;
+UARTTestMain.c(138): warning:  #177-D: variable "lu" was declared but never referenced
+        int u=0,i=0,lu=0,ru=0;
+UARTTestMain.c(138): warning:  #177-D: variable "ru" was declared but never referenced
+        int u=0,i=0,lu=0,ru=0;
+UARTTestMain.c(140): warning:  #550-D: variable "c" was set but never used
+        unsigned char c;
+UARTTestMain.c(166): warning:  #1-D: last line of file ends without a newline
+  */
+UARTTestMain.c: 14 warnings, 0 errors
+linking...
+Program Size: Code=3512 RO-data=2072 RW-data=44 ZI-data=1132  
+".\UART.axf" - 0 Error(s), 16 Warning(s).
+Load "C:\\Users\\Abhishek\\Documents\\ValvanoWareTM4C123\\Lab7_UART_TEST\\UART.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
