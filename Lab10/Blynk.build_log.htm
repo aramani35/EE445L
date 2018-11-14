@@ -1,0 +1,66 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Tariq Muhanna\Documents\ValvanoWareTM4C123\Lab10\Blynk.uvproj
+Project File Date:  11/13/2018
+
+<h2>Output:</h2>
+Build target 'Blynk'
+compiling Blynk.c...
+Timer.h(203): warning:  #1-D: last line of file ends without a newline
+  void Timer3A_Period(uint32_t period);
+Tach.h(16): warning:  #1-D: last line of file ends without a newline
+  uint32_t Tachometer_Read(void);
+Blynk.c: 2 warnings, 0 errors
+compiling Motor.c...
+Timer.h(203): warning:  #1-D: last line of file ends without a newline
+  void Timer3A_Period(uint32_t period);
+Timer.h(203): warning:  #1-D: last line of file ends without a newline
+  void Timer3A_Period(uint32_t period);
+Tach.h(16): warning:  #1-D: last line of file ends without a newline
+  uint32_t Tachometer_Read(void);
+Motor.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=7792 RO-data=2280 RW-data=300 ZI-data=2060  
+".\Blynk.axf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\Tariq Muhanna\\Documents\\ValvanoWareTM4C123\\Lab10\\Blynk.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Connection failed!, error code=&d
+Error: Flash Download failed  -  Target DLL has been cancelled
+file ends without a newline
+  void Timer3A_Period(uint32_t period);
+Timer.h(203): warning:  #1-D: last line of file ends without a newline
+  void Timer3A_Period(uint32_t period);
+Tach.h(16): warning:  #1-D: last line of file ends without a newline
+  uint32_t Tachometer_Read(void);
+Motor.c: 3 warnings, 0 errors
+".\Blynk.axf" - 1 Error(s), 7 Warning(s).
+Target not created
+  SYSCTL_RCC_R = 0x00100000 |           // 3) use PWM divider
+Motor.c(143): error:  #20: identifier "PWM0_0_CTL_R" is undefined
+    PWM0_0_CTL_R = 0;                     // 4) re-loading down-counting mode
+Motor.c(144): error:  #20: identifier "PWM0_0_GENA_R" is undefined
+    PWM0_0_GENA_R = 0xC8;                 // PB6 goes low on LOAD and high on CMPA down
+Motor.c(145): error:  #20: identifier "PWM0_0_LOAD_R" is undefined
+    PWM0_0_LOAD_R = period;           // 5) cycles needed to count down to 0
+Motor.c(146): error:  #20: identifier "PWM0_0_CMPA_R" is undefined
+    PWM0_0_CMPA_R = duty;             // 6) count value when output rises
+Motor.c(157): error:  #20: identifier "SYSCTL_RCGCGPIO_R" is undefined
+        SYSCTL_RCGCGPIO_R |= 0x02;               // turn on port B
+Motor.c(158): error:  #20: identifier "SYSCTL_RCGCTIMER_R" is undefined
+        delay = SYSCTL_RCGCTIMER_R;                      // allow time to finish activating
+Motor.c(159): error:  #20: identifier "GPIO_PORTB_AFSEL_R" is undefined
+        GPIO_PORTB_AFSEL_R |= 0x40;        // enable alt funct on PB6
+Motor.c(160): error:  #20: identifier "GPIO_PORTB_PCTL_R" is undefined
+    GPIO_PORTB_PCTL_R &= ~0x0F000000;  // configure PB6 as PWM0
+Motor.c(162): error:  #20: identifier "GPIO_PORTB_AMSEL_R" is undefined
+    GPIO_PORTB_AMSEL_R &= ~0x40;       // disable analog functionality on PB6
+Motor.c(163): error:  #20: identifier "GPIO_PORTB_DEN_R" is undefined
+    GPIO_PORTB_DEN_R |= 0x40;          // enable digital I/O on PB6
+Motor.c(164): warning:  #1-D: last line of file ends without a newline
+  }
+Motor.c: 4 warnings, 15 errors
+".\Blynk.axf" - 15 Error(s), 6 Warning(s).
+Target not created
