@@ -362,7 +362,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>rvmdk PART_LM4F120H5QR</Define>
               <Undefine></Undefine>
-              <IncludePath>..;..\..\..</IncludePath>
+              <IncludePath>..;..\..\..;..\..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -431,16 +431,6 @@
               <FilePath>.\ST7735.c</FilePath>
             </File>
             <File>
-              <FileName>Timer2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Timer2.c</FilePath>
-            </File>
-            <File>
-              <FileName>Timer3.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Timer3.c</FilePath>
-            </File>
-            <File>
               <FileName>esp8266.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\esp8266.c</FilePath>
@@ -451,24 +441,39 @@
               <FilePath>.\PortF.c</FilePath>
             </File>
             <File>
-              <FileName>Display.c</FileName>
+              <FileName>Timer2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Display.c</FilePath>
+              <FilePath>.\Timer2.c</FilePath>
             </File>
             <File>
-              <FileName>fixed.c</FileName>
+              <FileName>Timer3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\fixed.c</FilePath>
+              <FilePath>.\Timer3.c</FilePath>
             </File>
             <File>
-              <FileName>Sound.c</FileName>
+              <FileName>tach.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Sound.c</FilePath>
+              <FilePath>.\tach.c</FilePath>
             </File>
             <File>
-              <FileName>Timer.c</FileName>
+              <FileName>PWMtest.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Timer.c</FilePath>
+              <FilePath>.\PWMtest.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>controller.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\controller.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\motor.c</FilePath>
             </File>
           </Files>
         </Group>

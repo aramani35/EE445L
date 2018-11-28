@@ -57,6 +57,7 @@ uint32_t LastF;    // VP74
 
 
 uint32_t Period =100000000;				// 24-bit 12.5 ns units
+volatile int32_t duty = 0; // duty cycle
 int32_t Done;						// mailbox status set each rising
 int32_t kp1, kp2, ki1, ki2, I, desired_speed;	// variables needed for control equation
 
@@ -159,7 +160,7 @@ void Blynk_to_TM4C(void){int j; char data;
     UART_OutString("\n\r");
 #endif
   }  
-	TM4C_to_Blynk(77, (200000000/Period)/10);
+	TM4C_to_Blynk(77, duty / 800);
 }
 
 void SendInformation(void){
@@ -178,7 +179,10 @@ void SendInformation(void){
   LastF = thisF;
 }
 
-
+int max(int n1, int n2) {
+	if (n1 > n2) return n1;
+	else return n2;
+}
 
 /***************** main *****************/ 
 int main(void){       
@@ -210,7 +214,6 @@ int main(void){
   EnableInterrupts();
 	
 	// DEFAULT VALUES
-	volatile int32_t duty = 0;
 	desired_speed = 1023;
 	kp1 = 1;
 	kp2 = 1;
@@ -219,19 +222,23 @@ int main(void){
 	volatile int old_duty = 0;
 	I = 0;
 	volatile int current_speed, prev_speed, P, E;
+	current_speed = 0;
   while(1) {
 		
 		//Blynk_to_TM4C();
 //		volatile int current_speed, P, E;
 		prev_speed = current_speed;
 		current_speed = 200000000/Period;				//0.1 rps
+		current_speed = max(current_speed, 500
+		);
+		if (abs(current_speed - prev_speed) > 100) { current_speed = prev_speed; }
 //		if (current_speed > 200 && current_speed<10000){
 		ST7735_SetCursor(0, 3);
 		ST7735_OutUDec(current_speed);
-		if (current_speed>1000)
+		if (current_speed>500)
 			current_speed=1000;
-		if (current_speed-200>0)
-			current_speed-=200;
+//		if (current_speed-200>0)
+//			current_speed-=200;
 		ST7735_OutString("     ");
 		ST7735_SetCursor(0, 3);
 		
@@ -243,15 +250,15 @@ int main(void){
 		if(E < 0) 
 			E *=20;
 		
-//		ST7735_SetCursor(0, 4);
-//		if (E < 0) {
-//			ST7735_OutChar('-');
-//			int error_s = E * -1;
-//			ST7735_OutUDec(error_s);
-//		}
-//		else {
-//			ST7735_OutUDec(E);
-//		}
+		ST7735_SetCursor(0, 4);
+		if (E < 0) {
+			ST7735_OutChar('-');
+			int error_s = E * -1;
+			ST7735_OutUDec(error_s);
+		}
+		else {
+			ST7735_OutUDec(E);
+		}
 //		ST7735_SetCursor(0, 8);
 //		ST7735_OutUDec(kp1);
 //		ST7735_SetCursor(0, 9);
