@@ -179,8 +179,8 @@ void SendInformation(void){
   LastF = thisF;
 }
 
-int max(int n1, int n2) {
-	if (n1 > n2) return n1;
+int min(int n1, int n2) {
+	if (n1 < n2) return n1;
 	else return n2;
 }
 
@@ -229,9 +229,9 @@ int main(void){
 //		volatile int current_speed, P, E;
 		prev_speed = current_speed;
 		current_speed = 200000000/Period;				//0.1 rps
-		current_speed = max(current_speed, 500
-		);
-		if (abs(current_speed - prev_speed) > 100) { current_speed = prev_speed; }
+		current_speed = min(current_speed, 500);
+		
+		if (abs(current_speed - prev_speed) > 500) { current_speed = prev_speed; }
 //		if (current_speed > 200 && current_speed<10000){
 		ST7735_SetCursor(0, 3);
 		ST7735_OutUDec(current_speed);

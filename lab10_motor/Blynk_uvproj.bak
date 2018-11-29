@@ -362,7 +362,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>rvmdk PART_LM4F120H5QR</Define>
               <Undefine></Undefine>
-              <IncludePath>..;..\..\..;..\..</IncludePath>
+              <IncludePath>..;..\..\..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -431,16 +431,6 @@
               <FilePath>.\ST7735.c</FilePath>
             </File>
             <File>
-              <FileName>esp8266.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\esp8266.c</FilePath>
-            </File>
-            <File>
-              <FileName>PortF.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\PortF.c</FilePath>
-            </File>
-            <File>
               <FileName>Timer2.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Timer2.c</FilePath>
@@ -451,29 +441,34 @@
               <FilePath>.\Timer3.c</FilePath>
             </File>
             <File>
-              <FileName>tach.c</FileName>
+              <FileName>esp8266.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\tach.c</FilePath>
+              <FilePath>.\esp8266.c</FilePath>
             </File>
             <File>
-              <FileName>PWMtest.c</FileName>
+              <FileName>PortF.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\PWMtest.c</FilePath>
+              <FilePath>.\PortF.c</FilePath>
             </File>
             <File>
-              <FileName>PWM.c</FileName>
+              <FileName>Display.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\PWM.c</FilePath>
+              <FilePath>.\Display.c</FilePath>
             </File>
             <File>
-              <FileName>controller.c</FileName>
+              <FileName>fixed.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\controller.c</FilePath>
+              <FilePath>.\fixed.c</FilePath>
             </File>
             <File>
-              <FileName>motor.c</FileName>
+              <FileName>Sound.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\motor.c</FilePath>
+              <FilePath>.\Sound.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timer.c</FilePath>
             </File>
           </Files>
         </Group>
