@@ -34,10 +34,10 @@
 #define SP   0x20
 #define DEL  0x7F
 
-#define UART3_INT_CLEAR_R 								(*((volatile unsigned long*) (0x4000F000 + 0x044)))
-#define UART3_INT_MASK_R 								(*((volatile unsigned long*) (0x4000F000 + 0x038)))
-#define NIVC_EN1_INT33  0X08000000
-#define UART3_DR_R 								(*((volatile unsigned long*) (0x4000F000 + 0x000)))
+#define UART3_INT_CLEAR_R 				(*((volatile unsigned long*) (0x4000F000 + 0x044)))
+#define UART3_INT_MASK_R 					(*((volatile unsigned long*) (0x4000F000 + 0x038)))
+#define NIVC_EN1_INT33            (0X08000000)
+// #define UART3_DR_R 								(*((volatile unsigned long*) (0x4000F000 + 0x000)))
 
 
 //------------UART_Init------------

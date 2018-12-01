@@ -243,18 +243,21 @@ void UART_InString2(char *bufPt, uint16_t max) {
 	char character;
 	
 	character = UART3_FR_R&UART_FR_RXFE;
+
 	if(character != 0) {
 		character = UART_InChar();
 		*bufPt = character;
+		
+		if (character >= 0 && character <= 10) {
+			character += 0x30;
+			bufPt++;
+			length++;
+			UART_OutChar(character);
+			character = '.';
+		}
+		
 		while (character != '.') {
-			if(character == BS){
-				if(length){
-					bufPt--;
-					length--;
-					UART_OutChar(BS);
-				}
-			}
-			else if (length < max) {
+			if (length < max) {
 				*bufPt = character;
 				bufPt++;
 				length++;
@@ -263,6 +266,5 @@ void UART_InString2(char *bufPt, uint16_t max) {
 			character = UART_InChar();
 		}
 	}
-	*bufPt = 0;
+	*bufPt = '\0';
 }
-		

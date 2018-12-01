@@ -114,20 +114,23 @@ int main(void){
 		string[i] = prevString[i];
 	}
   while(1){
-		n = UART_InUDec();
-		if(n != prevn) {
-			ST7735_SetCursor(0,0);
-			ST7735_OutUDec(n);
-			prevn = n;
-		}
-//    UART_InString2(string,19);
-//		if (strcmp(string,prevString) != 0) {
+//		n = UART_InUDec();
+//		if(n != prevn) {
 //			ST7735_SetCursor(0,0);
-//			ST7735_OutString(string);
-//			for (int i=0; i<20; i++) {
-//				prevString[i] = string[i];
-//			}
+//			ST7735_OutUDec(n);
+//			prevn = n;
 //		}
+    UART_InString2(string,19);
+		if (strcmp(string,prevString) != 0) {
+			ST7735_SetCursor(0,0);
+			ST7735_OutString(string);
+			for (int i=0; i<20; i++) {
+				prevString[i] = string[i];
+			}
+		}
+//		ch = UART_InChar();
+//		ST7735_SetCursor(0, 0);
+//		ST7735_OutUDec(ch);
 		
 		
 		
