@@ -430,11 +430,6 @@
               <FileType>1</FileType>
               <FilePath>.\ST7735.c</FilePath>
             </File>
-            <File>
-              <FileName>voice.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\voice.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

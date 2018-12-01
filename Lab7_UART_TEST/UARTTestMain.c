@@ -99,7 +99,7 @@ int main(void){
 	uint32_t prevn = 0;
 	
 	PortF_Init();
-  PLL_Init(Bus80MHz);       // 50  MHz
+  PLL_Init(Bus80MHz);       // 80 MHz
   ST7735_InitR(INITR_REDTAB);
 	ST7735_FillScreen(ST7735_BLACK); 
 	ST7735_SetCursor(0,0);
@@ -122,7 +122,7 @@ int main(void){
 //		}
     UART_InString2(string,19);
 		if (strcmp(string,prevString) != 0) {
-			ST7735_SetCursor(0,0);
+			ST7735_SetCursor(0,3);
 			ST7735_OutString(string);
 			for (int i=0; i<20; i++) {
 				prevString[i] = string[i];

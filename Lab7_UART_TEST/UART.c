@@ -10,7 +10,6 @@
    "Embedded Systems: Real Time Interfacing to Arm Cortex M Microcontrollers",
    ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2015
    Program 4.12, Section 4.9.4, Figures 4.26 and 4.40
-
  Copyright 2015 by Jonathan W. Valvano, valvano@mail.utexas.edu
     You may use, edit, run or distribute this file
     as long as the above copyright notice remains
@@ -49,8 +48,8 @@ void UART_Init(void){
 	GPIO_PORTC_AFSEL_R |= 0x000000C0; // Set Alternate Func on PC6 and PC7 
 	GPIO_PORTC_PCTL_R |= (0x01000000|0x10000000); // Set 6 HalfByte or 7 HalfByte
 	UART3_CTL_R &= ~(0x00000001); // Disable Uart	
-	UART3_IBRD_R = 520; // IBRD = int (80,000,000 / (16 * 9600)) = int (520.833333333)	
-	UART3_FBRD_R = 53;  // FBRD = int (0.83333333 * 64 + 0.5 ) = 53
+	UART3_IBRD_R = 43; // IBRD = int (80,000,000 / (16 * 9600)) = int (520.833333333)	
+	UART3_FBRD_R = 26;  // FBRD = int (0.83333333 * 64 + 0.5 ) = 53
 	UART3_LCRH_R = (0x00000060); // 8 bit word Length or Enable Uart Fifo
 	UART3_CC_R = 0x00000000; // Use System Clock for Uar
 	UART3_CTL_R |= 0x00000001; //Enable Uart
@@ -248,15 +247,8 @@ void UART_InString2(char *bufPt, uint16_t max) {
 		character = UART_InChar();
 		*bufPt = character;
 		
-		if (character >= 0 && character <= 10) {
-			character += 0x30;
-			bufPt++;
-			length++;
-			UART_OutChar(character);
-			character = '.';
-		}
 		
-		while (character != '.') {
+		while (character != '\n') {
 			if (length < max) {
 				*bufPt = character;
 				bufPt++;
@@ -267,4 +259,23 @@ void UART_InString2(char *bufPt, uint16_t max) {
 		}
 	}
 	*bufPt = '\0';
+	
+	switch (bufPt[0]){
+		case 'P': break;//POKEMON
+		case 'D': break;//DATE
+		case 'T': break;//TIME
+		case 'F': break;//TEMP
+		case 'H': break;//HUMDITY
+		case 'C': break;//CITY
+		case 'S': break;//WIND SPEED
+		case 'W': break;//WEATHER DESCRPITION
+		case 'R': break;//REMINDER
+		default: break;
+		
+	
+	}
+	
+	
 }
+
+

@@ -1,24 +1,22 @@
 Dependencies for Project 'UART', Target 'UART': (DO NOT MODIFY !)
-F (.\startup.s)(0x5BDF0C5C)(--cpu Cortex-M4 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
-F (.\PLL.c)(0x5BDF0C5C)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\pll.o --omf_browse .\pll.crf --depend .\pll.d)
+F (.\startup.s)(0x5C01E706)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\PLL.c)(0x5C01E705)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\pll.o --omf_browse .\pll.crf --depend .\pll.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C86E14)
-I (PLL.h)(0x5BDF0C5C)
-I (../inc/tm4c123gh6pm.h)(0x5B98F5D8)
-F (.\UART.c)(0x5BE9EAB0)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+I (PLL.h)(0x5C01E706)
+I (../inc/tm4c123gh6pm.h)(0x5B8D8153)
+F (.\UART.c)(0x5C01F9A9)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C86E14)
-I (UART.h)(0x5BE9EB1C)
-I (../inc/tm4c123gh6pm.h)(0x5B98F5D8)
-F (.\UARTTestMain.c)(0x5BE9EB82)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uarttestmain.o --omf_browse .\uarttestmain.crf --depend .\uarttestmain.d)
+I (UART.h)(0x5C01E706)
+I (../inc/tm4c123gh6pm.h)(0x5B8D8153)
+F (.\UARTTestMain.c)(0x5C01F924)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uarttestmain.o --omf_browse .\uarttestmain.crf --depend .\uarttestmain.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C86E14)
 I (C:\Keil\ARM\ARMCC\include\String.h)(0x51C86E14)
-I (PLL.h)(0x5BDF0C5C)
-I (UART.h)(0x5BE9EB1C)
-I (../inc/tm4c123gh6pm.h)(0x5B98F5D8)
-I (ST7735.h)(0x5BDF0C5C)
-F (.\ST7735.c)(0x5BDF0C5C)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\st7735.o --omf_browse .\st7735.crf --depend .\st7735.d)
+I (PLL.h)(0x5C01E706)
+I (UART.h)(0x5C01E706)
+I (../inc/tm4c123gh6pm.h)(0x5B8D8153)
+I (ST7735.h)(0x5C01E706)
+F (.\ST7735.c)(0x5C01E706)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\st7735.o --omf_browse .\st7735.crf --depend .\st7735.d)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C86E14)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C86E14)
-I (ST7735.h)(0x5BDF0C5C)
-I (../inc/tm4c123gh6pm.h)(0x5B98F5D8)
-F (.\voice.c)(0x5BE9EA9C)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\voice.o --omf_browse .\voice.crf --depend .\voice.d)
-I (voice.h)(0x5BE9E883)
+I (ST7735.h)(0x5C01E706)
+I (../inc/tm4c123gh6pm.h)(0x5B8D8153)
